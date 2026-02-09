@@ -154,9 +154,9 @@ export default function MortgageCalculator() {
         
         {/* COLUMNA 1: Configuración (lg:col-span-3) */}
         <div className="col-span-12 lg:col-span-3 space-y-6">
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 lg:sticky lg:top-8">
-            <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <span className="bg-indigo-100 p-2 rounded-lg text-indigo-600"><DollarSign className="w-5 h-5"/></span>
+          <div className="bg-slate-50/80 rounded-3xl p-6 shadow-sm lg:sticky lg:top-8">
+            <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2 font-sans tracking-wide">
+              <span className="bg-slate-200 p-2 rounded-lg text-slate-700"><DollarSign className="w-5 h-5"/></span>
               Configuración
             </h2>
             
@@ -164,12 +164,12 @@ export default function MortgageCalculator() {
               {/* Input: Deuda */}
               <div className="space-y-3">
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Deuda Pendiente</label>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 focus-within:ring-2 ring-indigo-500/20 transition-all">
+                <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
                       type="number"
                       {...form.register("principal", { valueAsNumber: true })}
-                      className="bg-transparent border-none text-2xl font-bold p-0 h-auto focus-visible:ring-0 w-full"
+                      className="bg-transparent border-none text-2xl font-bold p-0 h-auto focus-visible:ring-0 w-full font-sans"
                     />
                     <span className="text-slate-400 font-medium">€</span>
                   </div>
@@ -180,14 +180,14 @@ export default function MortgageCalculator() {
                   max={800000}
                   step={1000}
                   onValueChange={(val) => form.setValue("principal", val[0])}
-                  className="[&_.bg-primary]:bg-indigo-600"
+                  className="[&_.bg-primary]:bg-slate-900"
                 />
               </div>
 
               {/* Input: Interés */}
               <div className="space-y-3">
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Interés Anual</label>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 focus-within:ring-2 ring-indigo-500/20 transition-all">
+                <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
                       type="number"
@@ -204,14 +204,14 @@ export default function MortgageCalculator() {
                   max={12}
                   step={0.1}
                   onValueChange={(val) => form.setValue("rate", val[0])}
-                  className="[&_.bg-primary]:bg-indigo-600"
+                  className="[&_.bg-primary]:bg-slate-900"
                 />
               </div>
 
               {/* Input: Años */}
               <div className="space-y-3">
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Plazo Restante</label>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 focus-within:ring-2 ring-indigo-500/20 transition-all">
+                <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
                       type="number"
@@ -227,7 +227,7 @@ export default function MortgageCalculator() {
                   max={40}
                   step={1}
                   onValueChange={(val) => form.setValue("years", val[0])}
-                  className="[&_.bg-primary]:bg-indigo-600"
+                  className="[&_.bg-primary]:bg-slate-900"
                 />
               </div>
 
@@ -236,7 +236,7 @@ export default function MortgageCalculator() {
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                   Cantidad extra puntual (ej. 10.000€)
                 </label>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 focus-within:ring-2 ring-indigo-500/20 transition-all">
+                <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
                       type="number"
@@ -252,7 +252,7 @@ export default function MortgageCalculator() {
                   max={100000}
                   step={1000}
                   onValueChange={(val) => form.setValue("lumpSumPayment", val[0])}
-                  className="[&_.bg-primary]:bg-indigo-600"
+                  className="[&_.bg-primary]:bg-slate-900"
                 />
               </div>
 
@@ -261,7 +261,7 @@ export default function MortgageCalculator() {
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                   Rentabilidad anual inversión segura
                 </label>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 focus-within:ring-2 ring-indigo-500/20 transition-all">
+                <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
                       type="number"
@@ -278,7 +278,7 @@ export default function MortgageCalculator() {
                   max={10}
                   step={0.25}
                   onValueChange={(val) => form.setValue("investmentRate", val[0])}
-                  className="[&_.bg-primary]:bg-indigo-600"
+                  className="[&_.bg-primary]:bg-slate-900"
                 />
               </div>
 
@@ -289,7 +289,7 @@ export default function MortgageCalculator() {
                 </label>
                 <select
                   {...form.register("amortizationType")}
-                  className="w-full h-12 rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300"
+                  className="w-full h-12 rounded-2xl bg-slate-100 px-4 text-sm font-medium text-slate-900 font-sans focus:ring-2 focus:ring-slate-900 focus:ring-offset-0 border-0"
                 >
                   <option value="reduce_term">Reducir plazo (menos años)</option>
                   <option value="reduce_payment">Reducir cuota mensual</option>
@@ -321,10 +321,10 @@ export default function MortgageCalculator() {
           {/* Panel comparativo: Amortizar vs Invertir */}
           <div className="grid sm:grid-cols-2 gap-4">
             <div
-              className={`rounded-3xl border-2 p-5 shadow-sm relative overflow-hidden ${
+              className={`rounded-3xl p-5 shadow-sm relative overflow-hidden ${
                 strategic?.winner === "amortize"
-                  ? "border-emerald-400 bg-emerald-50/50"
-                  : "border-slate-100 bg-white"
+                  ? "bg-emerald-50/80 ring-2 ring-emerald-400/50"
+                  : "bg-slate-50"
               }`}
             >
               {strategic?.winner === "amortize" && (
@@ -358,10 +358,10 @@ export default function MortgageCalculator() {
             </div>
 
             <div
-              className={`rounded-3xl border-2 p-5 relative overflow-hidden ${
+              className={`rounded-3xl p-5 relative overflow-hidden ${
                 strategic?.winner === "invest"
-                  ? "border-emerald-500 bg-emerald-50/80 shadow-lg ring-1 ring-emerald-200/50"
-                  : "border-slate-100 bg-white shadow-sm"
+                  ? "bg-emerald-50/80 shadow-lg ring-2 ring-emerald-500/50"
+                  : "bg-slate-50 shadow-sm"
               }`}
             >
               {strategic?.winner === "invest" && (
@@ -393,7 +393,7 @@ export default function MortgageCalculator() {
                       className="mt-4 inline-block w-full sm:w-auto"
                     >
                       <Button
-                        className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md hover:shadow-lg transition-all"
+                        className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition-all"
                         size="sm"
                       >
                         Ver Cuenta Remunerada al {form.watch("investmentRate")}%
@@ -408,7 +408,7 @@ export default function MortgageCalculator() {
           </div>
 
           {strategic && form.watch("lumpSumPayment") > 0 && (
-            <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between flex-wrap gap-2">
+            <div className="bg-slate-50 p-4 rounded-3xl shadow-sm flex items-center justify-between flex-wrap gap-2">
               <span className="text-sm font-medium text-slate-600">Diferencia neta (Invertir vs Amortizar)</span>
               <span
                 className={`text-xl font-bold ${
@@ -422,37 +422,37 @@ export default function MortgageCalculator() {
           )}
 
           {/* KPI principal: Cuota Mensual (tarjeta oscura grande) */}
-          <div className="bg-slate-900 rounded-3xl p-8 shadow-lg border border-slate-800">
-            <p className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">
+          <div className="bg-slate-900 rounded-3xl p-8 shadow-lg">
+            <p className="text-slate-400 text-sm font-sans font-medium uppercase tracking-wider mb-1">
               Cuota Mensual
             </p>
-            <p className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
+            <p className="text-4xl lg:text-5xl font-bold text-white tracking-tight font-sans">
               {data ? formatMoney(data.monthlyPayment) : "—"}
             </p>
           </div>
 
           {/* Dos tarjetas: Total Intereses y Total a Pagar */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
-              <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">
+            <div className="bg-slate-50 rounded-3xl p-6 shadow-sm">
+              <p className="text-slate-500 text-xs font-sans font-bold uppercase tracking-wider mb-1">
                 Total Intereses
               </p>
-              <p className="text-2xl font-bold text-indigo-600">
+              <p className="text-2xl font-bold text-slate-900 font-sans">
                 {data ? formatMoney(data.totalInterest) : "—"}
               </p>
             </div>
-            <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
-              <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">
+            <div className="bg-slate-50 rounded-3xl p-6 shadow-sm">
+              <p className="text-slate-500 text-xs font-sans font-bold uppercase tracking-wider mb-1">
                 Total a Pagar
               </p>
-              <p className="text-2xl font-bold text-slate-900">
+              <p className="text-2xl font-bold text-slate-900 font-sans">
                 {data ? formatMoney(data.totalPayment) : "—"}
               </p>
             </div>
           </div>
 
           {/* Gráfico de área (alto y limpio) */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+          <div className="bg-slate-50 rounded-3xl p-6 shadow-sm">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-slate-900 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-indigo-500"/>
@@ -507,8 +507,8 @@ export default function MortgageCalculator() {
 
         {/* COLUMNA 3: Datos Detallados (lg:col-span-4) */}
         <div className="col-span-12 lg:col-span-4">
-          <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-            <div className="p-5 border-b border-slate-100 bg-slate-50/50">
+          <div className="bg-slate-50 rounded-3xl shadow-sm overflow-hidden">
+            <div className="p-5 border-b border-slate-200/50 bg-slate-50">
               <h3 className="font-bold text-slate-900 flex items-center gap-2">
                 <TableIcon className="w-5 h-5 text-slate-500"/>
                 Tabla de Amortización (Resumen Anual)
@@ -538,7 +538,7 @@ export default function MortgageCalculator() {
                 </tbody>
               </table>
             </div>
-            <div className="p-4 bg-slate-50 border-t border-slate-100">
+            <div className="p-4 bg-slate-100/50 border-t border-slate-200/50">
               <p className="text-xs text-slate-400 text-center">
                 Resumen anual. Cálculos estimados (sistema francés).
               </p>
