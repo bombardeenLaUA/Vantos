@@ -45,6 +45,8 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+const SAFE_INVESTMENT_RATE = 4.0; // 4% de rentabilidad segura (ej. cuentas remuneradas)
+
 export default function MortgageCalculator() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -299,38 +301,34 @@ export default function MortgageCalculator() {
             </div>
           </div>
           
-          {/* Card Oportunidad VIP */}
+          {/* Card Oportunidad (lógica: hipoteca vs rentabilidad segura) */}
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 border border-amber-100/50 shadow-sm">
             <div className="flex items-start gap-3">
-              <div className="bg-white p-2 rounded-full shadow-sm text-amber-500">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <h4 className="font-bold text-amber-900 text-sm">Oportunidad VIP</h4>
-                {strategic?.winner === "invest" && form.watch("lumpSumPayment") > 0 ? (
-                  <>
+              {form.watch("rate") < SAFE_INVESTMENT_RATE ? (
+                <>
+                  <div className="bg-white p-2 rounded-full shadow-sm text-amber-500">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-bold text-amber-900 text-sm">Oportunidad de Inversión</h4>
                     <p className="text-xs text-amber-800/80 mt-1 leading-relaxed">
-                      Tu hipoteca te cuesta <strong>{form.watch("rate")}%</strong>, pero esta cuenta te da{" "}
-                      <strong>{form.watch("investmentRate")}%</strong>. ¡No amortices! Gana{" "}
-                      <strong>{formatMoney(strategic.invest.totalReturn)}</strong> invirtiendo aquí.
+                      Tu hipoteca es barata (<strong>{form.watch("rate")}%</strong>). Tu dinero rinde más en una cuenta segura al <strong>{SAFE_INVESTMENT_RATE}%</strong> que amortizando ahora.
                     </p>
-                    <a
-                      href="https://example.com/afiliado"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-block"
-                    >
-                      <Button variant="outline" size="sm" className="border-amber-300 text-amber-800 hover:bg-amber-100">
-                        Ver cuenta al {form.watch("investmentRate")}%
-                      </Button>
-                    </a>
-                  </>
-                ) : (
-                  <p className="text-xs text-amber-800/80 mt-1 leading-relaxed">
-                    Introduce una cantidad extra y compara. Si invertir sale ganando, aquí verás la recomendación y el enlace.
-                  </p>
-                )}
-              </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="bg-white p-2 rounded-full shadow-sm text-indigo-500">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-bold text-slate-900 text-sm">Prioridad: Amortizar</h4>
+                    <p className="text-xs text-slate-700/90 mt-1 leading-relaxed">
+                      Tu interés es alto (<strong>{form.watch("rate")}%</strong>). La inversión más rentable y segura ahora mismo es reducir tu deuda hipotecaria.
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -522,21 +520,21 @@ export default function MortgageCalculator() {
               <table className="w-full text-sm text-left">
                 <thead className="bg-slate-50 text-slate-500 font-semibold sticky top-0 z-10 shadow-sm">
                   <tr>
-                    <th className="px-5 py-4 bg-slate-50">Año</th>
-                    <th className="px-5 py-4 bg-slate-50">Cuota Anual</th>
-                    <th className="px-5 py-4 bg-slate-50 text-indigo-600">Intereses</th>
-                    <th className="px-5 py-4 bg-slate-50 text-emerald-600">Capital</th>
-                    <th className="px-5 py-4 bg-slate-50 text-right">Deuda Restante</th>
+                    <th className="px-3 py-4 bg-slate-50">Año</th>
+                    <th className="px-3 py-4 bg-slate-50">Cuota Anual</th>
+                    <th className="px-3 py-4 bg-slate-50 text-indigo-600">Intereses</th>
+                    <th className="px-3 py-4 bg-slate-50 text-emerald-600">Capital</th>
+                    <th className="px-3 py-4 bg-slate-50 text-right">Deuda Restante</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {data && data.yearlyTable.map((row, i) => (
                     <tr key={i} className="hover:bg-slate-50/80 transition-colors">
-                      <td className="px-5 py-3 font-medium text-slate-900">Año {row.rowNum} ({row.year})</td>
-                      <td className="px-5 py-3 text-slate-600">{formatMoney(row.interest + row.principal)}</td>
-                      <td className="px-5 py-3 text-indigo-600 font-medium">{formatMoney(row.interest)}</td>
-                      <td className="px-5 py-3 text-emerald-600 font-medium">{formatMoney(row.principal)}</td>
-                      <td className="px-5 py-3 text-right font-bold text-slate-900">{formatMoney(row.balance)}</td>
+                      <td className="px-3 py-3 font-medium text-slate-900">Año {row.rowNum} ({row.year})</td>
+                      <td className="px-3 py-3 text-slate-600">{formatMoney(row.interest + row.principal)}</td>
+                      <td className="px-3 py-3 text-indigo-600 font-medium">{formatMoney(row.interest)}</td>
+                      <td className="px-3 py-3 text-emerald-600 font-medium">{formatMoney(row.principal)}</td>
+                      <td className="px-3 py-3 text-right font-bold text-slate-900">{formatMoney(row.balance)}</td>
                     </tr>
                   ))}
                 </tbody>

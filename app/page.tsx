@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import Image from "next/image";
 import MortgageCalculator from "@/components/MortgageCalculator";
 
 export default function Home() {
@@ -9,14 +10,15 @@ export default function Home() {
 
           {/* Sidebar de marca (sticky en desktop) */}
           <aside className="xl:w-[300px] xl:flex-shrink-0 xl:sticky xl:top-8 flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm">
-                <span className="font-serif text-xl font-bold leading-none">V</span>
-              </div>
-              <span className="font-serif text-2xl font-semibold tracking-tight text-slate-900">
-                Vantos
-              </span>
-            </div>
+            <header className="mb-6">
+              <Image
+                src="/placeholder-logo.png"
+                alt="Vantos"
+                width={160}
+                height={40}
+                className="h-10 w-auto max-w-[160px] object-contain object-left"
+              />
+            </header>
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
               Simulador de Estrategia Hipotecaria
             </h1>
