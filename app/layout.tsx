@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: '/icono.ico',
-    shortcut: '/icono.ico',
+    icon: '/images/icono.ico',
+    shortcut: '/images/icono.ico',
     apple: '/images/vantos.png'
   }
 };
