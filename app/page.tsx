@@ -14,9 +14,9 @@ export default function Home() {
               <Image
                 src="/images/vantos.png"
                 alt="Logo Vantos"
-                width={200}
-                height={55}
-                className="h-[55px] w-auto max-w-[200px] object-contain object-left"
+                width={400}
+                height={110}
+                className="h-[110px] w-auto max-w-[400px] object-contain object-left"
               />
             </header>
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
