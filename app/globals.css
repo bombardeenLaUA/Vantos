@@ -76,3 +76,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Recharts: eliminar outline/focus feo en móvil */
+.recharts-wrapper,
+.recharts-surface,
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}

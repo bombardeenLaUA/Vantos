@@ -289,7 +289,7 @@ export default function MortgageCalculator() {
                 </label>
                 <select
                   {...form.register("amortizationType")}
-                  className="w-full h-12 rounded-2xl bg-slate-100 px-4 text-sm font-medium text-slate-900 font-sans focus:ring-2 focus:ring-slate-900 focus:ring-offset-0 border-0"
+                  className="block w-full rounded-xl border-0 bg-slate-100 py-3 pl-4 pr-10 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-slate-900 sm:text-sm sm:leading-6 outline-none font-sans"
                 >
                   <option value="reduce_term">Reducir plazo (menos años)</option>
                   <option value="reduce_payment">Reducir cuota mensual</option>
@@ -487,6 +487,7 @@ export default function MortgageCalculator() {
                       tickFormatter={(val) => `${val / 1000}k`}
                     />
                     <Tooltip 
+                      wrapperStyle={{ outline: 'none' }}
                       contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}
                       formatter={(value: unknown) => [formatMoney(Number(value)), "Capital Pendiente"]}
                     />
@@ -497,6 +498,7 @@ export default function MortgageCalculator() {
                       strokeWidth={3}
                       fillOpacity={1}
                       fill="url(#colorBalance)"
+                      activeDot={{ r: 6, strokeWidth: 0, stroke: 'none' }}
                     />
                   </AreaChart>
                 </ResponsiveContainer>

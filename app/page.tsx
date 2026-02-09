@@ -7,7 +7,7 @@ export default function Home() {
     <>
       {/* Header institucional */}
       <header className="w-full h-20 bg-[#0f172a] flex items-center">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 flex items-center">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 flex items-center justify-center">
           <Image
             src="/images/vantos.png"
             alt="Vantos"
