@@ -14,8 +14,8 @@ export default function Home() {
             <Image
               src="/images/vantos.png"
               alt="Logo Vantos"
-              width={539}
-              height={138}
+              width={389}
+              height={100}
               className="w-full h-auto object-contain rounded-lg"
             />
             </header>
