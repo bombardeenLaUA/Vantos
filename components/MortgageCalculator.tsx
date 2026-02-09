@@ -153,6 +153,7 @@ export default function MortgageCalculator() {
 
   const form = useForm<FormValues>({
     // Cast necesario para compatibilizar tipos entre zodResolver y react-hook-form
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(formSchema) as any,
     defaultValues: buildDefaultValues(searchParams),
     mode: "onChange",
