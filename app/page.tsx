@@ -11,13 +11,13 @@ export default function Home() {
           {/* Sidebar de marca (sticky en desktop) */}
           <aside className="xl:w-[300px] xl:flex-shrink-0 xl:sticky xl:top-8 flex flex-col">
             <header className="mb-6">
-              <Image
-                src="/images/vantos.png"
-                alt="Logo Vantos"
-                width={400}
-                height={110}
-                className="h-[110px] w-auto max-w-[400px] object-contain object-left"
-              />
+            <Image
+              src="/nombre-de-tu-imagen.png"
+              alt="Logo Vantos"
+              width={550}
+              height={138}
+              className="w-full h-auto object-contain rounded-lg"
+            />
             </header>
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
               Simulador de Estrategia Hipotecaria
