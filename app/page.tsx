@@ -16,7 +16,7 @@ export default function Home() {
               alt="Logo Vantos"
               width={389}
               height={100}
-              className="w-full h-auto object-contain rounded-lg"
+              className="w-[389px] h-[100px] object-contain rounded-lg"
             />
             </header>
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
