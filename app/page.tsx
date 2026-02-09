@@ -12,11 +12,11 @@ export default function Home() {
           <aside className="xl:w-[300px] xl:flex-shrink-0 xl:sticky xl:top-8 flex flex-col">
             <header className="mb-6">
               <Image
-                src="/images/logo.svg"
-                alt="Vantos"
-                width={50}
-                height={50}
-                className="h-[50px] w-[50px] object-contain object-left"
+                src="/images/vantos.png"
+                alt="Logo Vantos"
+                width={150}
+                height={40}
+                className="h-10 w-auto max-w-[150px] object-contain object-left"
               />
             </header>
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">

@@ -22,9 +22,11 @@ export const metadata: Metadata = {
     description: "Deja de perder dinero. Calcula en segundos la estrategia óptima para tu hipoteca.",
     type: "website",
   },
-  /* icons: {
-    icon: '/images/logo.svg',
-  } */
+  icons: {
+    icon: '/icono.ico',
+    shortcut: '/icono.ico',
+    apple: '/images/vantos.png', // Usamos el PNG para Apple porque tiene mejor resolución
+  }
 };
 
 export default function RootLayout({
