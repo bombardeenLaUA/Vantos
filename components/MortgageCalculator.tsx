@@ -150,18 +150,18 @@ export default function MortgageCalculator() {
   const formatMoney = (val: number) => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(val);
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto">
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+    <div className="w-full">
+      <div className="grid grid-cols-12 gap-6 lg:gap-8 items-start">
         
-        {/* --- LEFT SIDEBAR: CONTROLS --- */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 sticky top-8">
+        {/* COLUMNA 1: Configuración (lg:col-span-3) */}
+        <div className="col-span-12 lg:col-span-3 space-y-6">
+          <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 lg:sticky lg:top-8">
             <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
               <span className="bg-indigo-100 p-2 rounded-lg text-indigo-600"><DollarSign className="w-5 h-5"/></span>
               Configuración
             </h2>
             
-            <div className="space-y-8">
+            <div className="space-y-6">
               {/* Input: Deuda */}
               <div className="space-y-3">
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Deuda Pendiente</label>
@@ -296,18 +296,11 @@ export default function MortgageCalculator() {
                   <option value="reduce_payment">Reducir cuota mensual</option>
                 </select>
               </div>
-
-              <Button 
-                onClick={() => calculate(form.getValues())}
-                className="w-full h-12 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-medium shadow-lg shadow-slate-900/20"
-              >
-                Recalcular Escenario
-              </Button>
             </div>
           </div>
           
-          {/* Card Oportunidad VIP (afiliado cuando gana Invertir) */}
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 border border-amber-100/50">
+          {/* Card Oportunidad VIP */}
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 border border-amber-100/50 shadow-sm">
             <div className="flex items-start gap-3">
               <div className="bg-white p-2 rounded-full shadow-sm text-amber-500">
                 <Sparkles className="w-5 h-5" />
@@ -342,9 +335,8 @@ export default function MortgageCalculator() {
           </div>
         </div>
 
-        {/* --- RIGHT DASHBOARD: RESULTS --- */}
-        <div className="lg:col-span-8 space-y-6">
-          
+        {/* COLUMNA 2: Visualización (lg:col-span-5) */}
+        <div className="col-span-12 lg:col-span-5 space-y-6">
           {/* Panel comparativo: Amortizar vs Invertir */}
           <div className="grid sm:grid-cols-2 gap-4">
             <div
@@ -419,9 +411,8 @@ export default function MortgageCalculator() {
             </div>
           </div>
 
-          {/* Diferencia neta (solo si hay lump sum) */}
           {strategic && form.watch("lumpSumPayment") > 0 && (
-            <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between flex-wrap gap-2">
+            <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between flex-wrap gap-2">
               <span className="text-sm font-medium text-slate-600">Diferencia neta (Invertir vs Amortizar)</span>
               <span
                 className={`text-xl font-bold ${
@@ -434,19 +425,48 @@ export default function MortgageCalculator() {
             </div>
           )}
 
-          {/* GRAPH SECTION */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-            <div className="flex justify-between items-center mb-6">
+          {/* KPI principal: Cuota Mensual (tarjeta oscura grande) */}
+          <div className="bg-slate-900 rounded-3xl p-8 shadow-lg border border-slate-800">
+            <p className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">
+              Cuota Mensual
+            </p>
+            <p className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
+              {data ? formatMoney(data.monthlyPayment) : "—"}
+            </p>
+          </div>
+
+          {/* Dos tarjetas: Total Intereses y Total a Pagar */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+              <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">
+                Total Intereses
+              </p>
+              <p className="text-2xl font-bold text-indigo-600">
+                {data ? formatMoney(data.totalInterest) : "—"}
+              </p>
+            </div>
+            <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+              <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">
+                Total a Pagar
+              </p>
+              <p className="text-2xl font-bold text-slate-900">
+                {data ? formatMoney(data.totalPayment) : "—"}
+              </p>
+            </div>
+          </div>
+
+          {/* Gráfico de área (alto y limpio) */}
+          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+            <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-slate-900 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-indigo-500"/>
                 Proyección de Deuda
               </h3>
-              <div className="flex gap-2">
-                 <span className="text-xs font-medium px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full">Visualización Anual</span>
-              </div>
+              <span className="text-xs font-medium px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full">
+                Visualización Anual
+              </span>
             </div>
-            
-            <div className="h-[350px] w-full">
+            <div className="h-[400px] w-full">
               {data && (
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={data.schedule} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
@@ -472,7 +492,7 @@ export default function MortgageCalculator() {
                     />
                     <Tooltip 
                       contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}
-                      formatter={(value: any) => [formatMoney(value), "Capital Pendiente"]}
+                      formatter={(value: unknown) => [formatMoney(Number(value)), "Capital Pendiente"]}
                     />
                     <Area
                       type="monotone"
@@ -487,46 +507,47 @@ export default function MortgageCalculator() {
               )}
             </div>
           </div>
+        </div>
 
-          {/* TABLE SECTION (NUEVO) */}
+        {/* COLUMNA 3: Datos Detallados (lg:col-span-4) */}
+        <div className="col-span-12 lg:col-span-4">
           <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-            <div className="p-6 border-b border-slate-50 bg-slate-50/50 flex justify-between items-center">
+            <div className="p-5 border-b border-slate-100 bg-slate-50/50">
               <h3 className="font-bold text-slate-900 flex items-center gap-2">
                 <TableIcon className="w-5 h-5 text-slate-500"/>
                 Tabla de Amortización (Resumen Anual)
               </h3>
             </div>
-            <div className="overflow-x-auto">
+            <div className="max-h-[800px] overflow-y-auto">
               <table className="w-full text-sm text-left">
-                <thead className="bg-slate-50 text-slate-500 font-semibold">
+                <thead className="bg-slate-50 text-slate-500 font-semibold sticky top-0 z-10 shadow-sm">
                   <tr>
-                    <th className="px-6 py-4">Año</th>
-                    <th className="px-6 py-4">Cuota Anual</th>
-                    <th className="px-6 py-4 text-indigo-600">Intereses Pagados</th>
-                    <th className="px-6 py-4 text-emerald-600">Capital Amortizado</th>
-                    <th className="px-6 py-4 text-right">Deuda Restante</th>
+                    <th className="px-5 py-4 bg-slate-50">Año</th>
+                    <th className="px-5 py-4 bg-slate-50">Cuota Anual</th>
+                    <th className="px-5 py-4 bg-slate-50 text-indigo-600">Intereses</th>
+                    <th className="px-5 py-4 bg-slate-50 text-emerald-600">Capital</th>
+                    <th className="px-5 py-4 bg-slate-50 text-right">Deuda Restante</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {data && data.yearlyTable.map((row, i) => (
                     <tr key={i} className="hover:bg-slate-50/80 transition-colors">
-                      <td className="px-6 py-4 font-medium text-slate-900">Año {row.rowNum} ({row.year})</td>
-                      <td className="px-6 py-4 text-slate-600">{formatMoney(row.interest + row.principal)}</td>
-                      <td className="px-6 py-4 text-indigo-600 font-medium">{formatMoney(row.interest)}</td>
-                      <td className="px-6 py-4 text-emerald-600 font-medium">{formatMoney(row.principal)}</td>
-                      <td className="px-6 py-4 text-right font-bold text-slate-900">{formatMoney(row.balance)}</td>
+                      <td className="px-5 py-3 font-medium text-slate-900">Año {row.rowNum} ({row.year})</td>
+                      <td className="px-5 py-3 text-slate-600">{formatMoney(row.interest + row.principal)}</td>
+                      <td className="px-5 py-3 text-indigo-600 font-medium">{formatMoney(row.interest)}</td>
+                      <td className="px-5 py-3 text-emerald-600 font-medium">{formatMoney(row.principal)}</td>
+                      <td className="px-5 py-3 text-right font-bold text-slate-900">{formatMoney(row.balance)}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="p-4 bg-slate-50 text-center">
-               <p className="text-xs text-slate-400">
-                 Mostrando resumen anual. Los cálculos son estimaciones basadas en el sistema de amortización francés.
-               </p>
+            <div className="p-4 bg-slate-50 border-t border-slate-100">
+              <p className="text-xs text-slate-400 text-center">
+                Resumen anual. Cálculos estimados (sistema francés).
+              </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>

@@ -4,22 +4,32 @@ import MortgageCalculator from "@/components/MortgageCalculator";
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="container mx-auto max-w-6xl px-4 py-10 lg:py-14">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] items-start">
-          
-          {/* Header lateral */}
-          <header className="space-y-3 sticky top-10">
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl font-geist">
-              Simulador de Estrategia Hipotecaria Vantos
-            </h1>
-            <p className="max-w-xl text-sm text-slate-500 sm:text-base leading-relaxed">
-              Una única pantalla, toda la claridad que necesitas para decidir si amortizar, reducir
-              plazo o invertir tu capital.
-            </p>
-          </header>
+      <div className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col xl:flex-row xl:gap-12 gap-10 items-stretch">
 
-          {/* Calculadora envuelta en Suspense para arreglar el error de build */}
-          <section aria-label="Simulador hipotecario">
+          {/* Sidebar de marca (sticky en desktop) */}
+          <aside className="xl:w-[300px] xl:flex-shrink-0 xl:sticky xl:top-8 flex flex-col">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm">
+                <span className="font-serif text-xl font-bold leading-none">V</span>
+              </div>
+              <span className="font-serif text-2xl font-semibold tracking-tight text-slate-900">
+                Vantos
+              </span>
+            </div>
+            <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              Simulador de Estrategia Hipotecaria
+            </h1>
+            <p className="mt-2 text-sm text-slate-500 leading-relaxed">
+              Compara amortizar, reducir plazo o invertir tu capital con datos claros en una sola pantalla.
+            </p>
+          </aside>
+
+          {/* Área principal: calculadora */}
+          <section
+            aria-label="Simulador hipotecario"
+            className="flex-1 min-w-0"
+          >
             <Suspense fallback={
               <div className="w-full h-[600px] bg-white rounded-3xl shadow-sm border border-slate-100 flex items-center justify-center">
                 <span className="text-slate-400 animate-pulse">Cargando simulador...</span>
