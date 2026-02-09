@@ -7,10 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
   TrendingUp,
-  Sparkles,
   DollarSign,
-  Calendar,
-  PieChart,
   Table as TableIcon,
   ArrowDownCircle,
   ArrowUpCircle,
@@ -45,7 +42,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const SAFE_INVESTMENT_RATE = 4.0; // 4% de rentabilidad segura (ej. cuentas remuneradas)
+const SAFE_RATE = 3.0; // Rentabilidad segura del mercado (ej. cuentas remuneradas)
 
 export default function MortgageCalculator() {
   const router = useRouter();
@@ -300,37 +297,23 @@ export default function MortgageCalculator() {
               </div>
             </div>
           </div>
-          
-          {/* Card Oportunidad (lógica: hipoteca vs rentabilidad segura) */}
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 border border-amber-100/50 shadow-sm">
-            <div className="flex items-start gap-3">
-              {form.watch("rate") < SAFE_INVESTMENT_RATE ? (
-                <>
-                  <div className="bg-white p-2 rounded-full shadow-sm text-amber-500">
-                    <Sparkles className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-bold text-amber-900 text-sm">Oportunidad de Inversión</h4>
-                    <p className="text-xs text-amber-800/80 mt-1 leading-relaxed">
-                      Tu hipoteca es barata (<strong>{form.watch("rate")}%</strong>). Tu dinero rinde más en una cuenta segura al <strong>{SAFE_INVESTMENT_RATE}%</strong> que amortizando ahora.
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="bg-white p-2 rounded-full shadow-sm text-indigo-500">
-                    <TrendingUp className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-bold text-slate-900 text-sm">Prioridad: Amortizar</h4>
-                    <p className="text-xs text-slate-700/90 mt-1 leading-relaxed">
-                      Tu interés es alto (<strong>{form.watch("rate")}%</strong>). La inversión más rentable y segura ahora mismo es reducir tu deuda hipotecaria.
-                    </p>
-                  </div>
-                </>
-              )}
+
+          {/* Tarjeta Oportunidad VIP (lógica: hipoteca vs rentabilidad segura) */}
+          {form.watch("rate") < SAFE_RATE ? (
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 border border-amber-100/50 shadow-sm">
+              <h4 className="font-bold text-amber-900 text-sm">Oportunidad VIP</h4>
+              <p className="text-xs text-amber-800/80 mt-1 leading-relaxed">
+                Tu hipoteca es barata (<strong>{form.watch("rate")}%</strong>). Ganas dinero manteniendo tu liquidez en una cuenta al <strong>{SAFE_RATE}%</strong> en vez de amortizar.
+              </p>
             </div>
-          </div>
+          ) : (
+            <div className="bg-gradient-to-br from-indigo-50 to-slate-50 rounded-3xl p-6 border border-indigo-100/50 shadow-sm">
+              <h4 className="font-bold text-indigo-900 text-sm">Prioridad: Amortizar</h4>
+              <p className="text-xs text-slate-700/90 mt-1 leading-relaxed">
+                Tu interés (<strong>{form.watch("rate")}%</strong>) es superior a la rentabilidad segura del mercado. Lo más rentable hoy es reducir deuda.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* COLUMNA 2: Visualización (lg:col-span-5) */}
@@ -375,16 +358,16 @@ export default function MortgageCalculator() {
             </div>
 
             <div
-              className={`rounded-3xl border-2 p-5 shadow-sm relative overflow-hidden ${
+              className={`rounded-3xl border-2 p-5 relative overflow-hidden ${
                 strategic?.winner === "invest"
-                  ? "border-emerald-400 bg-emerald-50/50"
-                  : "border-slate-100 bg-white"
+                  ? "border-emerald-500 bg-emerald-50/80 shadow-lg ring-1 ring-emerald-200/50"
+                  : "border-slate-100 bg-white shadow-sm"
               }`}
             >
               {strategic?.winner === "invest" && (
                 <div className="absolute top-3 right-3">
-                  <span className="rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-white">
-                    Ganadora
+                  <span className="rounded-full bg-emerald-600 px-3 py-1 text-xs font-bold text-white uppercase tracking-wide">
+                    Máximo beneficio
                   </span>
                 </div>
               )}
@@ -402,6 +385,21 @@ export default function MortgageCalculator() {
                   <p className="text-sm text-slate-500 mt-1">
                     Rentabilidad {form.watch("investmentRate")}% a largo del plazo de la hipoteca.
                   </p>
+                  {strategic?.winner === "invest" && form.watch("lumpSumPayment") > 0 && (
+                    <a
+                      href="https://example.com/afiliado"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-block w-full sm:w-auto"
+                    >
+                      <Button
+                        className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md hover:shadow-lg transition-all"
+                        size="sm"
+                      >
+                        Ver Cuenta Remunerada al {form.watch("investmentRate")}%
+                      </Button>
+                    </a>
+                  )}
                 </>
               ) : (
                 <p className="text-slate-400">Introduce datos y cantidad extra para comparar.</p>

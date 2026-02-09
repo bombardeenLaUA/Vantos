@@ -14,26 +14,17 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vantos | El Simulador de Estrategia Hipotecaria Inteligente",
-  description: "No uses un Excel. Vantos es la herramienta visual gratuita para decidir si amortizar hipoteca, reducir plazo o invertir tu capital. Calcula tu ahorro real hoy.",
-  keywords: ["simulador hipoteca", "amortizar o invertir", "calculadora hipotecaria visual", "estrategia financiera", "ahorro hipoteca"],
-  authors: [{ name: "Vantos Financial Tech" }],
+  title: "Simulador de Estrategia Hipotecaria | ¿Amortizar o Invertir?",
+  description: "Herramienta gratuita para calcular si te interesa más amortizar hipoteca o invertir. Visualiza tu ahorro real y optimiza tus finanzas en segundos.",
+  keywords: ["amortizar hipoteca", "simulador hipoteca", "amortizar o invertir", "calculadora financiera", "ahorro intereses"],
   openGraph: {
-    title: "Vantos | ¿Amortizar hipoteca o invertir?",
-    description: "Descubre en segundos la estrategia financiera que te hará ahorrar miles de euros en tu hipoteca.",
-    url: "https://vantos.vercel.app",
-    siteName: "Vantos Simulador",
-    locale: "es_ES",
+    title: "Vantos | Tu Estrategia Hipotecaria Inteligente",
+    description: "Deja de perder dinero. Calcula en segundos la estrategia óptima para tu hipoteca.",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Vantos | El Simulador Hipotecario Visual",
-    description: "Decide tu futuro financiero: ¿Amortizar cuota, plazo o invertir? Calcúlalo ahora.",
-  },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  /* icons: {
+    icon: '/images/logo.svg',
+  } */
 };
 
 export default function RootLayout({
