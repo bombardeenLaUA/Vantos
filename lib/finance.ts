@@ -43,6 +43,31 @@ export interface ScenarioComparison {
   recommendation: "reduce_payment" | "reduce_term" | "invest";
 }
 
+/** Input para el simulador estratégico (comparar amortizar vs invertir). */
+export interface StrategicComparisonInput {
+  debt: number;
+  annualRate: number;
+  termMonths: number;
+  lumpSumPayment: number;
+  investmentRate: number;
+  amortizationType: "reduce_payment" | "reduce_term";
+}
+
+/** Resultado de la comparación estratégica: base, amortizar e invertir. */
+export interface StrategicComparisonResult {
+  base: { monthlyPayment: number; totalInterest: number };
+  amortize: {
+    totalInterestPaid: number;
+    interestSaved: number;
+    newMonthlyPayment?: number;
+    newTermMonths?: number;
+  };
+  invest: { totalReturn: number };
+  /** Diferencia neta en €: positivo = gana invertir, negativo = gana amortizar. */
+  netDifference: number;
+  winner: "amortize" | "invest";
+}
+
 /**
  * Calcula la cuota mensual de una hipoteca con amortización francesa.
  * @param principal - Capital pendiente (€)
@@ -253,5 +278,70 @@ export function calculateSavingsScenario(input: SavingsScenarioInput): ScenarioC
     scenarioB,
     scenarioC,
     recommendation: "reduce_payment",
+  };
+}
+
+/**
+ * Comparación estratégica: escenario base, amortizar con lump sum o invertir ese capital.
+ * Devuelve totales y la diferencia neta para destacar la opción ganadora.
+ */
+export function getStrategicComparison(input: StrategicComparisonInput): StrategicComparisonResult {
+  const {
+    debt,
+    annualRate,
+    termMonths,
+    lumpSumPayment,
+    investmentRate,
+    amortizationType,
+  } = input;
+
+  const base = getAmortizationTable(debt, annualRate, termMonths);
+
+  if (lumpSumPayment <= 0) {
+    const investZero = scenarioCInvest(0, investmentRate, termMonths);
+    return {
+      base: { monthlyPayment: base.monthlyPayment, totalInterest: base.totalInterest },
+      amortize: {
+        totalInterestPaid: base.totalInterest,
+        interestSaved: 0,
+        newMonthlyPayment: base.monthlyPayment,
+        newTermMonths: termMonths,
+      },
+      invest: { totalReturn: investZero.totalReturn },
+      netDifference: 0,
+      winner: "amortize",
+    };
+  }
+
+  const scenarioA = scenarioAReducePayment(debt, annualRate, termMonths, lumpSumPayment);
+  const scenarioB = scenarioBReduceTerm(debt, annualRate, termMonths, lumpSumPayment);
+  const invest = scenarioCInvest(lumpSumPayment, investmentRate, termMonths);
+
+  const amortizeResult =
+    amortizationType === "reduce_payment"
+      ? {
+          totalInterestPaid: scenarioA.totalInterestPaid,
+          interestSaved: new Decimal(base.totalInterest).minus(scenarioA.totalInterestPaid).toNumber(),
+          newMonthlyPayment: scenarioA.newMonthlyPayment,
+          newTermMonths: termMonths,
+        }
+      : {
+          totalInterestPaid: scenarioB.totalInterestPaid,
+          interestSaved: scenarioB.savedInterest,
+          newMonthlyPayment: base.monthlyPayment,
+          newTermMonths: scenarioB.newTermMonths,
+        };
+
+  const netDifference = new Decimal(invest.totalReturn)
+    .minus(amortizeResult.interestSaved)
+    .toDecimalPlaces(2, Decimal.ROUND_HALF_UP)
+    .toNumber();
+
+  return {
+    base: { monthlyPayment: base.monthlyPayment, totalInterest: base.totalInterest },
+    amortize: amortizeResult,
+    invest: { totalReturn: invest.totalReturn },
+    netDifference,
+    winner: netDifference > 0 ? "invest" : "amortize",
   };
 }
