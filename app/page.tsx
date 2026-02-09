@@ -5,7 +5,7 @@ import MortgageCalculator from "@/components/MortgageCalculator";
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1800px] px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col xl:flex-row xl:gap-12 gap-10 items-stretch">
 
           {/* Sidebar de marca (sticky en desktop) */}
@@ -14,9 +14,9 @@ export default function Home() {
               <Image
                 src="/images/vantos.png"
                 alt="Logo Vantos"
-                width={150}
-                height={40}
-                className="h-10 w-auto max-w-[150px] object-contain object-left"
+                width={200}
+                height={55}
+                className="h-[55px] w-auto max-w-[200px] object-contain object-left"
               />
             </header>
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">

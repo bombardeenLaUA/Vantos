@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icono.ico',
     shortcut: '/icono.ico',
-    apple: '/images/vantos.png', // Usamos el PNG para Apple porque tiene mejor resolución
+    apple: '/images/vantos.png'
   }
 };
 
