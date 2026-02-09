@@ -1,5 +1,6 @@
-﻿'use client';
+'use client';
 
+import type { ChangeEvent } from "react";
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
@@ -151,7 +152,8 @@ export default function MortgageCalculator() {
   const [amortization, setAmortization] = useState<AmortizationResult | null>(null);
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    // Cast necesario para compatibilizar tipos entre zodResolver y react-hook-form
+    resolver: zodResolver(formSchema) as any,
     defaultValues: buildDefaultValues(searchParams),
     mode: "onChange",
   });
@@ -214,7 +216,7 @@ export default function MortgageCalculator() {
                         step={1000}
                         className="h-9 rounded-lg border-transparent bg-slate-50 text-sm focus-visible:ring-2 focus-visible:ring-indigo-100"
                         {...field}
-                        onChange={(event) => {
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
                           const value = Number(event.target.value);
                           field.onChange(Number.isNaN(value) ? "" : value);
                         }}
@@ -225,7 +227,7 @@ export default function MortgageCalculator() {
                       max={600_000}
                       step={5_000}
                       value={[Number(field.value) || 0]}
-                      onValueChange={([value]) => field.onChange(value)}
+                      onValueChange={([value]: number[]) => field.onChange(value)}
                       className="mt-1 [&_.grow]:!bg-indigo-100 [&_.absolute.h-full]:!bg-indigo-500 [&_button]:!border-indigo-200 [&_button]:!bg-white"
                     />
                     <FormDescription className="text-[0.7rem] text-slate-500">
@@ -253,7 +255,7 @@ export default function MortgageCalculator() {
                         step={0.1}
                         className="h-9 rounded-lg border-transparent bg-slate-50 text-sm focus-visible:ring-2 focus-visible:ring-indigo-100"
                         {...field}
-                        onChange={(event) => {
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
                           const value = Number(event.target.value);
                           field.onChange(Number.isNaN(value) ? "" : value);
                         }}
@@ -264,7 +266,9 @@ export default function MortgageCalculator() {
                       max={15}
                       step={0.1}
                       value={[Number(field.value) || 0]}
-                      onValueChange={([value]) => field.onChange(Number(value.toFixed(2)))}
+                      onValueChange={([value]: number[]) =>
+                        field.onChange(Number(value.toFixed(2)))
+                      }
                       className="mt-1 [&_.grow]:!bg-indigo-100 [&_.absolute.h-full]:!bg-indigo-500 [&_button]:!border-indigo-200 [&_button]:!bg-white"
                     />
                     <FormDescription className="text-[0.7rem] text-slate-500">
@@ -292,7 +296,7 @@ export default function MortgageCalculator() {
                         step={1}
                         className="h-9 rounded-lg border-transparent bg-slate-50 text-sm focus-visible:ring-2 focus-visible:ring-indigo-100"
                         {...field}
-                        onChange={(event) => {
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
                           const value = Number(event.target.value);
                           field.onChange(Number.isNaN(value) ? "" : value);
                         }}
@@ -303,7 +307,7 @@ export default function MortgageCalculator() {
                       max={40}
                       step={1}
                       value={[Number(field.value) || 0]}
-                      onValueChange={([value]) => field.onChange(value)}
+                      onValueChange={([value]: number[]) => field.onChange(value)}
                       className="mt-1 [&_.grow]:!bg-indigo-100 [&_.absolute.h-full]:!bg-indigo-500 [&_button]:!border-indigo-200 [&_button]:!bg-white"
                     />
                     <FormDescription className="text-[0.7rem] text-slate-500">
@@ -330,7 +334,7 @@ export default function MortgageCalculator() {
                         step={50}
                         className="h-9 rounded-lg border-transparent bg-slate-50 text-sm focus-visible:ring-2 focus-visible:ring-indigo-100"
                         {...field}
-                        onChange={(event) => {
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
                           const value = Number(event.target.value);
                           field.onChange(Number.isNaN(value) ? "" : value);
                         }}
@@ -341,7 +345,7 @@ export default function MortgageCalculator() {
                       max={2_000}
                       step={50}
                       value={[Number(field.value) || 0]}
-                      onValueChange={([value]) => field.onChange(value)}
+                      onValueChange={([value]: number[]) => field.onChange(value)}
                       className="mt-1 [&_.grow]:!bg-indigo-100 [&_.absolute.h-full]:!bg-indigo-500 [&_button]:!border-indigo-200 [&_button]:!bg-white"
                     />
                     <FormDescription className="text-[0.7rem] text-slate-500">
@@ -425,8 +429,10 @@ export default function MortgageCalculator() {
                         tickFormatter={(value: number) => numberFormatter.format(value)}
                       />
                       <Tooltip
-                        formatter={(value: number) => currencyFormatter.format(value)}
-                        labelFormatter={(label: string) => label}
+                        formatter={(value: number | undefined) =>
+                          value != null ? currencyFormatter.format(value) : ""
+                        }
+                        labelFormatter={(label) => String(label ?? "")}
                         contentStyle={{
                           borderRadius: 12,
                           borderColor: "#e2e8f0",
