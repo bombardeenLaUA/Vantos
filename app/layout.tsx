@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import JsonLd from "../components/JsonLd";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -16,19 +17,38 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Simulador de Estrategia Hipotecaria | ¿Amortizar o Invertir?",
-  description: "Herramienta gratuita para calcular si te interesa más amortizar hipoteca o invertir. Visualiza tu ahorro real y optimiza tus finanzas en segundos.",
-  keywords: ["amortizar hipoteca", "simulador hipoteca", "amortizar o invertir", "calculadora financiera", "ahorro intereses"],
+  metadataBase: new URL("https://www.vantoshq.com"),
+  title: {
+    default: "Vantos | Tu Futuro Financiero Inteligente",
+    template: "%s | Vantos",
+  },
+  description:
+    "Simula, planifica y optimiza tu patrimonio. Herramientas financieras avanzadas para decidir si amortizar hipoteca o invertir.",
+  keywords: [
+    "amortizar hipoteca",
+    "simulador hipoteca",
+    "amortizar o invertir",
+    "calculadora financiera",
+    "ahorro intereses",
+  ],
   openGraph: {
-    title: "Vantos | Tu Estrategia Hipotecaria Inteligente",
-    description: "Deja de perder dinero. Calcula en segundos la estrategia óptima para tu hipoteca.",
     type: "website",
+    locale: "es_ES",
+    url: "https://www.vantoshq.com",
+    siteName: "Vantos",
+    title: "Vantos | Tu Futuro Financiero Inteligente",
+    description:
+      "Simula, planifica y optimiza tu patrimonio. Herramientas financieras avanzadas para decidir si amortizar hipoteca o invertir.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@vantoshq",
   },
   icons: {
-    icon: '/images/icono.ico',
-    shortcut: '/images/icono.ico',
-    apple: '/images/vantos.png'
-  }
+    icon: "/images/icono.ico",
+    shortcut: "/images/icono.ico",
+    apple: "/images/vantos.png",
+  },
 };
 
 export default function RootLayout({
@@ -40,6 +60,7 @@ export default function RootLayout({
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans bg-slate-50 text-slate-900 antialiased">
         {children}
+        <JsonLd />
         <GoogleAnalytics gaId="G-NVGJLSV03C" />
       </body>
     </html>
