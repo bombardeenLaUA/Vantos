@@ -78,8 +78,24 @@
 }
 
 /* Recharts: eliminar outline/focus feo al clicar/tocar */
-.recharts-wrapper:focus,
 .recharts-surface:focus,
-.recharts-layer:focus {
+.recharts-layer:focus,
+.recharts-tooltip-wrapper:focus,
+.recharts-wrapper:focus-visible {
   outline: none !important;
+}
+
+/* Eliminar outline nativo en inputs/selects y controlar el foco con Tailwind */
+select:focus,
+input:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+select:focus-visible,
+input:focus-visible {
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow) !important;
 }

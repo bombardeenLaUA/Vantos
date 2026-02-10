@@ -156,11 +156,12 @@ export default function MortgageCalculator() {
         {/* COLUMNA 1: Configuración (lg:col-span-3) */}
         <div className="col-span-12 lg:col-span-3 space-y-6">
           <div className="bg-slate-50/80 rounded-3xl p-6 shadow-sm lg:sticky lg:top-8">
-            <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2 font-sans tracking-wide">
+            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 font-sans tracking-wide">
               <span className="bg-slate-200 p-2 rounded-lg text-slate-700"><DollarSign className="w-5 h-5"/></span>
               Configuración
             </h2>
-            
+            <p className="text-xs text-slate-500 mt-1 mb-4 font-sans">Ajusta tus parámetros actuales.</p>
+
             <div className="space-y-6">
               {/* Input: Deuda */}
               <div className="space-y-3">
@@ -293,8 +294,8 @@ export default function MortgageCalculator() {
                     {...form.register("amortizationType")}
                     className="block w-full rounded-xl border-0 bg-slate-100 py-3 pl-4 pr-12 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-slate-900 sm:text-sm sm:leading-6 outline-none appearance-none font-sans"
                   >
-                    <option value="reduce_term" className="bg-slate-100 text-slate-900">Reducir plazo (menos años)</option>
-                    <option value="reduce_payment" className="bg-slate-100 text-slate-900">Reducir cuota mensual</option>
+                    <option value="reduce_term" className="bg-slate-100 text-slate-900 py-2">Reducir plazo (menos años)</option>
+                    <option value="reduce_payment" className="bg-slate-100 text-slate-900 py-2">Reducir cuota mensual</option>
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 pointer-events-none" />
                 </div>
@@ -442,6 +443,9 @@ export default function MortgageCalculator() {
               <p className="text-slate-500 text-xs font-sans font-bold uppercase tracking-wider mb-1">
                 Total Intereses
               </p>
+              <p className="text-[10px] text-slate-400 font-normal tracking-normal leading-tight mb-1">
+                Estimación total del préstamo
+              </p>
               <p className="text-2xl font-bold text-slate-900 font-sans">
                 {data ? formatMoney(data.totalInterest) : "—"}
               </p>
@@ -449,6 +453,9 @@ export default function MortgageCalculator() {
             <div className="bg-slate-50 rounded-3xl p-6 shadow-sm">
               <p className="text-slate-500 text-xs font-sans font-bold uppercase tracking-wider mb-1">
                 Total a Pagar
+              </p>
+              <p className="text-[10px] text-slate-400 font-normal tracking-normal leading-tight mb-1">
+                Estimación total del préstamo
               </p>
               <p className="text-2xl font-bold text-slate-900 font-sans">
                 {data ? formatMoney(data.totalPayment) : "—"}
@@ -545,9 +552,9 @@ export default function MortgageCalculator() {
                 </tbody>
               </table>
             </div>
-            <div className="p-4 bg-slate-100/50 border-t border-slate-200/50">
-              <p className="text-xs text-slate-400 text-center">
-                Resumen anual. Cálculos estimados (sistema francés).
+            <div className="p-3 bg-slate-50/50 text-center border-t border-slate-100">
+              <p className="text-[10px] text-slate-400 leading-tight">
+                Cálculos basados en el sistema de amortización francés (cuotas constantes). Los resultados son orientativos.
               </p>
             </div>
           </div>
