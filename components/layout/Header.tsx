@@ -7,11 +7,11 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Image
-            src="/images/vantos-white.png"
+            src="/images/vantos.png"
             alt="Vantos"
             width={120}
             height={32}
-            className="h-8 w-auto object-contain"
+            className="h-8 w-auto object-contain brightness-0 invert"
           />
         </div>
         <nav className="flex items-center gap-6">
