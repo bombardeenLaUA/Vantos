@@ -3,8 +3,7 @@ import { Home as HomeIcon, Banknote, TrendingUp } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         {/* Hero */}
         <section className="mb-10">
           <h1 className="font-serif text-slate-900 text-4xl md:text-5xl font-semibold tracking-tight">
@@ -83,7 +82,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div>
-    </main>
+    </div>
   );
 }
