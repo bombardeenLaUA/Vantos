@@ -11,6 +11,7 @@ import {
   Table as TableIcon,
   ArrowDownCircle,
   ArrowUpCircle,
+  ChevronDown,
 } from "lucide-react";
 import {
   AreaChart,
@@ -163,7 +164,7 @@ export default function MortgageCalculator() {
             <div className="space-y-6">
               {/* Input: Deuda */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Deuda Pendiente</label>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Deuda Pendiente (Capital Vivo)</label>
                 <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
@@ -186,7 +187,7 @@ export default function MortgageCalculator() {
 
               {/* Input: Interés */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Interés Anual</label>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Interés Anual (TIN)</label>
                 <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
@@ -210,7 +211,7 @@ export default function MortgageCalculator() {
 
               {/* Input: Años */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Plazo Restante</label>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Plazo Restante (Años)</label>
                 <div className="bg-slate-100 p-4 rounded-2xl focus-within:ring-2 focus-within:ring-slate-900 focus-within:ring-offset-0 transition-all">
                   <div className="flex items-center justify-between">
                     <Input
@@ -287,13 +288,16 @@ export default function MortgageCalculator() {
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                   Si amortizas, prefieres
                 </label>
-                <select
-                  {...form.register("amortizationType")}
-                  className="block w-full rounded-xl border-0 bg-slate-100 py-3 pl-4 pr-10 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-slate-900 sm:text-sm sm:leading-6 outline-none font-sans"
-                >
-                  <option value="reduce_term">Reducir plazo (menos años)</option>
-                  <option value="reduce_payment">Reducir cuota mensual</option>
-                </select>
+                <div className="relative">
+                  <select
+                    {...form.register("amortizationType")}
+                    className="block w-full rounded-xl border-0 bg-slate-100 py-3 pl-4 pr-12 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-slate-900 sm:text-sm sm:leading-6 outline-none appearance-none font-sans"
+                  >
+                    <option value="reduce_term" className="bg-slate-100 text-slate-900">Reducir plazo (menos años)</option>
+                    <option value="reduce_payment" className="bg-slate-100 text-slate-900">Reducir cuota mensual</option>
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 pointer-events-none" />
+                </div>
               </div>
             </div>
           </div>
@@ -429,6 +433,7 @@ export default function MortgageCalculator() {
             <p className="text-4xl lg:text-5xl font-bold text-white tracking-tight font-sans">
               {data ? formatMoney(data.monthlyPayment) : "—"}
             </p>
+            <p className="text-xs text-slate-500 mt-1 font-sans">Basado en sistema de amortización francés</p>
           </div>
 
           {/* Dos tarjetas: Total Intereses y Total a Pagar */}

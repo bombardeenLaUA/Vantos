@@ -24,8 +24,11 @@ export default function Home() {
             <h1 className="font-serif text-slate-900 text-4xl md:text-5xl font-semibold tracking-tight mb-2">
               Simulador de Estrategia Hipotecaria
             </h1>
-            <p className="text-slate-500 font-sans text-base md:text-lg mb-8">
+            <p className="text-slate-500 font-sans text-base md:text-lg mb-1">
               Compara amortizar, reducir plazo o invertir tu capital con datos claros en una sola pantalla.
+            </p>
+            <p className="text-slate-400 font-sans text-sm mb-8">
+              Introduce los datos actuales de tu préstamo para simular escenarios de ahorro.
             </p>
             <section aria-label="Simulador hipotecario">
               <Suspense fallback={

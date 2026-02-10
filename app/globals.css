@@ -77,9 +77,9 @@
   }
 }
 
-/* Recharts: eliminar outline/focus feo en móvil */
-.recharts-wrapper,
-.recharts-surface,
-.recharts-tooltip-wrapper {
+/* Recharts: eliminar outline/focus feo al clicar/tocar */
+.recharts-wrapper:focus,
+.recharts-surface:focus,
+.recharts-layer:focus {
   outline: none !important;
 }
