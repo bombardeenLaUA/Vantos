@@ -14,6 +14,10 @@ const config: Config = {
   			sans: ["var(--font-sans)", "system-ui", "sans-serif"],
   		},
   		colors: {
+        "vantos-dark": "#0B0F19",
+        "vantos-gold": "#C6A87C",
+        "vantos-gray": "#F3F4F6",
+        "vantos-card": "#FFFFFF",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

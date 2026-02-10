@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import JsonLd from "../components/JsonLd";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -58,8 +60,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans bg-slate-50 text-slate-900 antialiased">
-        {children}
+      <body className="font-sans text-slate-900 antialiased">
+        <Header />
+        <main className="min-h-screen bg-vantos-gray">
+          {children}
+        </main>
+        <Footer />
         <JsonLd />
         <GoogleAnalytics gaId="G-NVGJLSV03C" />
       </body>
