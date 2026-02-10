@@ -8,8 +8,6 @@
   }
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -31,12 +29,12 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -64,20 +62,12 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
-
-
-
-@layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 
-/* Recharts: eliminar outline/focus feo al clicar/tocar */
+/* Recharts: sin outline al hacer foco */
 .recharts-surface:focus,
 .recharts-layer:focus,
 .recharts-tooltip-wrapper:focus,
@@ -85,14 +75,13 @@
   outline: none !important;
 }
 
-/* Eliminar outline nativo en inputs/selects y controlar el foco con Tailwind */
+/* Inputs/selects: quitar outline nativo, dejar ring de Tailwind */
 select:focus,
 input:focus,
 button:focus {
   outline: none !important;
   box-shadow: none !important;
 }
-
 select:focus-visible,
 input:focus-visible {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
