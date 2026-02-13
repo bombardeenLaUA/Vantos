@@ -345,3 +345,63 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
     winner: netDifference > 0 ? "invest" : "amortize",
   };
 }
+
+/** Genera el schedule anual para la curva estándar (saldoBanco) y la acelerada (saldoEstrategia). */
+export function getMortgageChartData(
+  debt: number,
+  annualRate: number,
+  termMonths: number,
+  lumpSumPayment: number,
+  amortizationType: "reduce_payment" | "reduce_term"
+): { year: number; saldoBanco: number; saldoEstrategia: number }[] {
+  const base = getAmortizationTable(debt, annualRate, termMonths);
+  const scheduleBase: { year: number; saldoBanco: number; saldoEstrategia: number }[] = [];
+
+  for (let i = 0; i < base.table.length; i++) {
+    const row = base.table[i];
+    if (row.month % 12 === 0 || row.month === base.table.length) {
+      scheduleBase.push({
+        year: Math.round(row.month / 12),
+        saldoBanco: row.balance,
+        saldoEstrategia: row.balance,
+      });
+    }
+  }
+
+  if (lumpSumPayment <= 0) {
+    return scheduleBase;
+  }
+
+  const newPrincipal = Math.max(0, debt - lumpSumPayment);
+  if (newPrincipal <= 0) return scheduleBase;
+
+  let amortStrategy: AmortizationResult;
+  if (amortizationType === "reduce_payment") {
+    amortStrategy = getAmortizationTable(newPrincipal, annualRate, termMonths);
+  } else {
+    const comparison = getStrategicComparison({
+      debt,
+      annualRate,
+      termMonths,
+      lumpSumPayment,
+      investmentRate: 0,
+      amortizationType: "reduce_term",
+    });
+    const newTerm = comparison.amortize.newTermMonths ?? termMonths;
+    amortStrategy = getAmortizationTable(newPrincipal, annualRate, newTerm);
+  }
+
+  const strategyByYear = new Map<number, number>();
+  for (let i = 0; i < amortStrategy.table.length; i++) {
+    const row = amortStrategy.table[i];
+    if (row.month % 12 === 0 || row.month === amortStrategy.table.length) {
+      strategyByYear.set(Math.round(row.month / 12), row.balance);
+    }
+  }
+
+  const maxStrategyYear = strategyByYear.size > 0 ? Math.max(...strategyByYear.keys()) : 0;
+  return scheduleBase.map((row) => ({
+    ...row,
+    saldoEstrategia: row.year <= maxStrategyYear ? (strategyByYear.get(row.year) ?? 0) : 0,
+  }));
+}

@@ -13,22 +13,14 @@ import {
   ArrowUpCircle,
   ChevronDown,
 } from "lucide-react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-} from "recharts";
-
+import LuxuryAreaChart from "@/components/ui/LuxuryAreaChart";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import {
   getAmortizationTable,
   getStrategicComparison,
+  getMortgageChartData,
   type StrategicComparisonResult,
 } from "@/lib/finance";
 
@@ -56,6 +48,7 @@ export default function MortgageCalculator() {
     yearlyTable: { year: number; interest: number; principal: number; balance: number; rowNum: number }[];
   } | null>(null);
   const [strategic, setStrategic] = useState<StrategicComparisonResult | null>(null);
+  const [chartData, setChartData] = useState<{ year: number; saldoBanco: number; saldoEstrategia: number }[]>([]);
 
   const form = useForm<FormValues>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -120,6 +113,15 @@ export default function MortgageCalculator() {
         amortizationType: values.amortizationType,
       });
       setStrategic(comparison);
+
+      const cd = getMortgageChartData(
+        values.principal,
+        values.rate,
+        termMonths,
+        values.lumpSumPayment,
+        values.amortizationType
+      );
+      setChartData(cd);
 
       const params = new URLSearchParams();
       params.set("debt", values.principal.toString());
@@ -475,45 +477,13 @@ export default function MortgageCalculator() {
               </span>
             </div>
             <div className="h-[400px] w-full">
-              {data && (
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={data.schedule} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#6366f1" stopOpacity={0.2} />
-                        <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis 
-                      dataKey="year" 
-                      axisLine={false} 
-                      tickLine={false} 
-                      tick={{ fill: '#94a3b8', fontSize: 12 }}
-                      tickFormatter={(val) => `Año ${val}`}
-                    />
-                    <YAxis 
-                      axisLine={false} 
-                      tickLine={false} 
-                      tick={{ fill: '#94a3b8', fontSize: 12 }}
-                      tickFormatter={(val) => `${val / 1000}k`}
-                    />
-                    <Tooltip 
-                      wrapperStyle={{ outline: 'none' }}
-                      contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}
-                      formatter={(value: unknown) => [formatMoney(Number(value)), "Capital Pendiente"]}
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="balance"
-                      stroke="#6366f1"
-                      strokeWidth={3}
-                      fillOpacity={1}
-                      fill="url(#colorBalance)"
-                      activeDot={{ r: 6, strokeWidth: 0, stroke: 'none' }}
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
+              {chartData.length > 0 && (
+                <LuxuryAreaChart
+                  data={chartData}
+                  primaryKey="saldoBanco"
+                  secondaryKey={form.watch("lumpSumPayment") > 0 ? "saldoEstrategia" : undefined}
+                  formatValue={(v) => formatMoney(v)}
+                />
               )}
             </div>
           </div>

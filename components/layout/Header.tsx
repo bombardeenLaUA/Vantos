@@ -16,7 +16,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-4 sm:gap-6 flex-wrap">
           <Link
             href="/"
             className="text-sm font-medium tracking-wide text-white/80 hover:text-vantos-gold transition-colors"
@@ -27,7 +27,19 @@ export default function Header() {
             href="/herramientas/hipoteca"
             className="text-sm font-medium tracking-wide text-white/80 hover:text-vantos-gold transition-colors"
           >
-            Herramientas
+            Hipoteca
+          </Link>
+          <Link
+            href="/herramientas/inversion"
+            className="text-sm font-medium tracking-wide text-white/80 hover:text-vantos-gold transition-colors"
+          >
+            Inversión
+          </Link>
+          <Link
+            href="/herramientas/ahorro"
+            className="text-sm font-medium tracking-wide text-white/80 hover:text-vantos-gold transition-colors"
+          >
+            Ahorro
           </Link>
           <Link
             href="/estrategia"
