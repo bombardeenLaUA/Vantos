@@ -60,9 +60,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans text-slate-900 antialiased">
+      <body className="font-sans bg-vantos-dark text-white antialiased min-h-screen flex flex-col">
         <Header />
-        <main className="min-h-screen bg-vantos-gray">
+        <main className="flex-1 relative w-full">
           {children}
         </main>
         <Footer />

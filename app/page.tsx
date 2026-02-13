@@ -40,12 +40,12 @@ export default function Home() {
               >
                 Simular Ahorro
               </Link>
-              <a
-                href="#"
+              <Link
+                href="/como-funciona"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/5 hover:border-white/30 transition-colors"
               >
                 Cómo funciona
-              </a>
+              </Link>
             </div>
           </div>
 

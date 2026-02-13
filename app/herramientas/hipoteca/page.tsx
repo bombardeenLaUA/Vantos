@@ -10,28 +10,27 @@ export const metadata: Metadata = {
 
 export default function HipotecaToolPage() {
   return (
-    <div className="max-w-[1600px] mx-auto my-12 px-4 sm:px-6">
-      <div className="bg-white rounded-[2rem] shadow-2xl p-8 md:p-12">
-        <h1 className="font-serif text-slate-900 text-4xl md:text-5xl font-semibold tracking-tight mb-2">
+    <div className="min-h-screen bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
+      <div className="max-w-[1600px] mx-auto">
+        <h1 className="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">
           Simulador de Estrategia Hipotecaria
         </h1>
-        <p className="text-slate-500 font-sans text-base md:text-lg mb-1">
-          Compara amortizar, reducir plazo o invertir tu capital con datos claros en una sola pantalla.
+        <p className="text-gray-400 text-lg mb-8">
+          Analiza el impacto de tus amortizaciones con precisión matemática.
         </p>
-        <p className="text-slate-400 font-sans text-sm mb-8">
-          Introduce los datos actuales de tu préstamo para simular escenarios de ahorro.
-        </p>
-        <section aria-label="Simulador hipotecario">
-          <Suspense
-            fallback={
-              <div className="w-full h-[600px] rounded-3xl bg-slate-50 flex items-center justify-center">
-                <span className="text-slate-400 animate-pulse">Cargando simulador...</span>
-              </div>
-            }
-          >
-            <MortgageCalculator />
-          </Suspense>
-        </section>
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/10 p-6 md:p-8">
+          <section aria-label="Simulador hipotecario">
+            <Suspense
+              fallback={
+                <div className="w-full h-[600px] rounded-3xl bg-slate-50 flex items-center justify-center">
+                  <span className="text-slate-400 animate-pulse">Cargando simulador...</span>
+                </div>
+              }
+            >
+              <MortgageCalculator />
+            </Suspense>
+          </section>
+        </div>
       </div>
     </div>
   );
