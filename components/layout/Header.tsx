@@ -10,7 +10,7 @@ const navLinks = [
   { href: "/herramientas/hipoteca", label: "Hipoteca" },
   { href: "/herramientas/inversion", label: "Inversión" },
   { href: "/herramientas/ahorro", label: "Ahorro" },
-  { href: "/como-funciona", label: "Método Vantos" },
+  { href: "/como-funciona", label: "Guía" },
 ];
 
 export default function Header() {
