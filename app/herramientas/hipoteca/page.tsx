@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function HipotecaToolPage() {
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
+    <div className="flex-1 bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
       <div className="max-w-[1600px] mx-auto">
         <h1 className="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">
           Simulador de Estrategia Hipotecaria

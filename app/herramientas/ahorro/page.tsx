@@ -41,7 +41,7 @@ export default function AhorroToolPage() {
     }).format(val);
 
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
+    <div className="flex-1 bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
       <div className="max-w-[800px] mx-auto">
         <h1 className="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">
           Objetivo de Ahorro
@@ -121,8 +121,8 @@ export default function AhorroToolPage() {
               </div>
             </div>
 
-            {/* Barra de Progreso Premium */}
-            <div className="space-y-4">
+            {/* Barra de Progreso Premium - Card */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl space-y-4">
               <div
                 className="h-8 rounded-full bg-white/10 overflow-hidden"
                 role="progressbar"
@@ -144,9 +144,9 @@ export default function AhorroToolPage() {
               </p>
             </div>
 
-            {/* Resultado: Tiempo restante */}
+            {/* Resultado: Tiempo restante - Card */}
             {tiempoRestante !== null && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl text-center">
                 <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-2">
                   Tiempo restante estimado
                 </p>

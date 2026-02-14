@@ -43,7 +43,7 @@ export default function InversionToolPage() {
     }).format(val);
 
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
+    <div className="flex-1 bg-vantos-dark pt-24 pb-12 px-4 sm:px-6">
       <div className="max-w-[1200px] mx-auto">
         <h1 className="font-serif text-4xl lg:text-5xl text-white mb-4 leading-tight">
           Proyección de Inversión
@@ -150,7 +150,7 @@ export default function InversionToolPage() {
             <div className="lg:col-span-8 space-y-6">
               {/* KPIs */}
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
                   <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-1">
                     Capital Final
                   </p>
@@ -158,7 +158,7 @@ export default function InversionToolPage() {
                     {formatMoney(capitalFinal)}
                   </p>
                 </div>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
                   <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-1">
                     Total Intereses Generados
                   </p>
@@ -169,7 +169,7 @@ export default function InversionToolPage() {
               </div>
 
               {/* Gráfico */}
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
                 <h3 className="font-bold text-slate-100 mb-4">Evolución del Capital</h3>
                 {chartData.length > 0 && (
                   <LuxuryAreaChart
