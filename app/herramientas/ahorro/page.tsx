@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
+import ConsultationCTA from "@/components/ui/ConsultationCTA";
 import { Slider } from "@/components/ui/slider";
 
 export default function AhorroToolPage() {
@@ -157,6 +158,7 @@ export default function AhorroToolPage() {
             )}
           </div>
         </div>
+        <ConsultationCTA />
       </div>
     </div>
   );

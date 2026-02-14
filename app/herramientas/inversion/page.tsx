@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import LuxuryAreaChart from "@/components/ui/LuxuryAreaChart";
+import ConsultationCTA from "@/components/ui/ConsultationCTA";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 
@@ -176,6 +177,7 @@ export default function InversionToolPage() {
             </div>
           </div>
         </div>
+        <ConsultationCTA />
       </div>
     </div>
   );

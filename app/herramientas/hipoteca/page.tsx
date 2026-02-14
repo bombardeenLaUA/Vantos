@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import MortgageCalculator from "@/components/MortgageCalculator";
+import ConsultationCTA from "@/components/ui/ConsultationCTA";
 
 export const metadata: Metadata = {
   title: "Simulador de Estrategia Hipotecaria | VANTOS",
@@ -31,6 +32,7 @@ export default function HipotecaToolPage() {
             </Suspense>
           </section>
         </div>
+        <ConsultationCTA />
       </div>
     </div>
   );
