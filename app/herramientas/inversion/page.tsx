@@ -54,8 +54,12 @@ export default function InversionToolPage() {
 
         <div className="bg-slate-900/50 rounded-3xl shadow-2xl overflow-hidden border border-white/10 p-6 md:p-8">
           <div className="grid lg:grid-cols-12 gap-8">
-            {/* Configuración */}
-            <div className="lg:col-span-4 space-y-6">
+            {/* Configuración - Card encapsulada como en Hipoteca */}
+            <div className="lg:col-span-4">
+              <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-6 lg:p-8 space-y-6">
+                <h2 className="text-lg font-bold text-slate-100 font-sans tracking-wide">Configuración</h2>
+                <p className="text-xs text-gray-400 -mt-2 font-sans">Ajusta tus parámetros.</p>
+                <div className="space-y-6">
               <div className="space-y-3">
                 <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">
                   Inversión Inicial (€)
@@ -143,6 +147,8 @@ export default function InversionToolPage() {
                   onValueChange={(v) => setReturnRate(v[0])}
                   className="[&_.bg-primary]:bg-vantos-gold"
                 />
+              </div>
+                </div>
               </div>
             </div>
 

@@ -52,8 +52,11 @@ export default function AhorroToolPage() {
 
         <div className="bg-slate-900/50 rounded-3xl shadow-2xl overflow-hidden border border-white/10 p-6 md:p-8">
           <div className="space-y-8">
-            {/* Inputs */}
-            <div className="grid sm:grid-cols-1 gap-6">
+            {/* Configuración - Card encapsulada como en Hipoteca */}
+            <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-6 lg:p-8">
+              <h2 className="text-lg font-bold text-slate-100 font-sans tracking-wide mb-1">Configuración</h2>
+              <p className="text-xs text-gray-400 mb-6 font-sans">Introduce tu meta y ahorros.</p>
+              <div className="grid sm:grid-cols-1 gap-6">
               <div className="space-y-3">
                 <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">
                   Objetivo (Meta en €)
@@ -119,6 +122,7 @@ export default function AhorroToolPage() {
                   className="[&_.bg-primary]:bg-vantos-gold"
                 />
               </div>
+            </div>
             </div>
 
             {/* Barra de Progreso Premium - Card */}
