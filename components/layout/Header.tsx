@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
@@ -15,6 +16,7 @@ const navLinks = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -38,7 +40,11 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium tracking-wide text-white/80 hover:text-vantos-gold transition-colors"
+                className={`text-sm font-medium tracking-wide transition-colors ${
+                  pathname === link.href
+                    ? "text-vantos-gold"
+                    : "text-white/80 hover:text-vantos-gold"
+                }`}
               >
                 {link.label}
               </Link>
@@ -75,13 +81,17 @@ export default function Header() {
                 <X className="w-8 h-8" />
               </button>
             </div>
-            <nav className="flex-1 flex flex-col items-center justify-center gap-8 font-serif text-3xl text-white">
+            <nav className="flex-1 flex flex-col items-center justify-center gap-8 font-serif text-3xl">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-white hover:text-vantos-gold transition-colors"
+                  className={`transition-colors ${
+                    pathname === link.href
+                      ? "text-vantos-gold"
+                      : "text-white hover:text-vantos-gold"
+                  }`}
                 >
                   {link.label}
                 </Link>
