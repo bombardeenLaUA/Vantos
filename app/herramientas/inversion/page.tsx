@@ -57,8 +57,8 @@ export default function InversionToolPage() {
             {/* Configuración - Card encapsulada como en Hipoteca */}
             <div className="lg:col-span-4 h-full">
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl h-full flex flex-col">
-                <div className="mb-6">
-                  <h2 className="text-lg font-bold text-slate-100 font-sans tracking-wide mb-2">Configuración</h2>
+                <div className="mb-4">
+                  <h2 className="text-lg font-bold text-slate-100 font-sans tracking-wide mb-4">Configuración</h2>
                   <p className="text-xs text-gray-400 -mt-2 font-sans">Ajusta tus parámetros.</p>
                 </div>
                 <div className="space-y-6">

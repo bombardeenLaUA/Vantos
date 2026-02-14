@@ -29,7 +29,7 @@ export default function Header() {
                 alt="Vantos"
                 width={120}
                 height={32}
-                className="h-8 w-auto object-contain brightness-0 invert"
+                className="h-8 w-auto object-contain brightness-0 invert transition-all duration-300 hover:[filter:invert(76%)_sepia(35%)_saturate(637%)_hue-rotate(358deg)_brightness(88%)_contrast(88%)]"
               />
             </Link>
           </div>
