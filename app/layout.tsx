@@ -21,11 +21,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vantoshq.com"),
   title: {
-    default: "Vantos | Tu Futuro Financiero Inteligente",
+    default: "Vantos | Suite de Estrategia Financiera Inteligente",
     template: "%s | Vantos",
   },
   description:
-    "Simula, planifica y optimiza tu patrimonio. Herramientas financieras avanzadas para decidir si amortizar hipoteca o invertir.",
+    "Simula, planifica y optimiza tu patrimonio. Herramientas avanzadas de amortización hipotecaria, inversión y ahorro. Sin registros ni comisiones.",
   keywords: [
     "amortizar hipoteca",
     "simulador hipoteca",
@@ -38,9 +38,10 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: "https://www.vantoshq.com",
     siteName: "Vantos",
-    title: "Vantos | Tu Futuro Financiero Inteligente",
+    title: "Vantos | Suite de Estrategia Financiera Inteligente",
     description:
-      "Simula, planifica y optimiza tu patrimonio. Herramientas financieras avanzadas para decidir si amortizar hipoteca o invertir.",
+      "Simula, planifica y optimiza tu patrimonio. Herramientas avanzadas de amortización hipotecaria, inversión y ahorro. Sin registros ni comisiones.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "VANTOS - Financial Strategy Suite" }],
   },
   twitter: {
     card: "summary_large_image",

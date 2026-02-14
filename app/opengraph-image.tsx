@@ -10,19 +10,18 @@ export default async function Image() {
     (
       <div
         style={{
-          height: "100%",
           width: "100%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#0B0F19",
-          backgroundImage: "radial-gradient(circle at center, #1e293b 0%, #0B0F19 100%)",
         }}
       >
         <div
           style={{
-            fontSize: 80,
+            fontSize: 72,
             color: "#C6A87C",
             fontFamily: "serif",
             letterSpacing: "-2px",
@@ -33,13 +32,12 @@ export default async function Image() {
         </div>
         <div
           style={{
-            fontSize: 30,
+            fontSize: 32,
             color: "white",
-            marginTop: 20,
-            opacity: 0.8,
+            marginTop: 24,
           }}
         >
-          Suite de Estrategia Financiera
+          Financial Strategy Suite
         </div>
       </div>
     ),

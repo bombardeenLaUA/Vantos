@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -18,12 +19,12 @@ export default function Footer() {
         </div>
         <div className="flex flex-col items-start md:items-end gap-1">
           <div className="flex gap-4">
-            <a href="#" className="hover:text-vantos-gold transition-colors">
+            <Link href="/aviso-legal" className="hover:text-vantos-gold transition-colors">
               Aviso Legal
-            </a>
-            <a href="#" className="hover:text-vantos-gold transition-colors">
+            </Link>
+            <Link href="/privacidad" className="hover:text-vantos-gold transition-colors">
               Privacidad
-            </a>
+            </Link>
           </div>
           <p className="text-[11px] mt-1">
             © {year} Vantos Financial Tech.

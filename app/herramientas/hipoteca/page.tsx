@@ -20,11 +20,11 @@ export default function HipotecaToolPage() {
         <p className="text-gray-400 text-lg mb-8">
           Analiza el impacto de tus amortizaciones con precisión matemática.
         </p>
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/10 p-6 md:p-8">
+        <div className="bg-slate-900/50 rounded-3xl shadow-2xl overflow-hidden border border-white/10 p-6 md:p-8">
           <section aria-label="Simulador hipotecario">
             <Suspense
               fallback={
-                <div className="w-full h-[600px] rounded-3xl bg-slate-50 flex items-center justify-center">
+                <div className="w-full h-[600px] rounded-3xl bg-white/5 flex items-center justify-center">
                   <span className="text-slate-400 animate-pulse">Cargando simulador...</span>
                 </div>
               }

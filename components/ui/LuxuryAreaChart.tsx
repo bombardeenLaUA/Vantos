@@ -96,18 +96,18 @@ export default function LuxuryAreaChart({
           <CartesianGrid
             strokeDasharray="3 3"
             vertical={false}
-            stroke="rgba(148,163,184,0.2)"
+            stroke="rgba(203,213,225,0.25)"
           />
           <XAxis
             dataKey="year"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#94a3b8", fontSize: 12 }}
+            tick={{ fill: "#cbd5e1", fontSize: 12 }}
           />
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#94a3b8", fontSize: 12 }}
+            tick={{ fill: "#cbd5e1", fontSize: 12 }}
             tickFormatter={(v) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v))}
           />
           <Tooltip

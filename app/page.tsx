@@ -33,57 +33,63 @@ export default function Home() {
             <p className="text-slate-400 font-sans text-base lg:text-lg max-w-xl leading-relaxed">
               Simula en segundos si te conviene amortizar o invertir. Sin fórmulas ocultas: números claros y una recomendación basada en tu caso.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
               <Link
                 href="/herramientas/hipoteca"
-                className="inline-flex items-center justify-center rounded-xl bg-vantos-gold px-6 py-3 text-sm font-semibold text-vantos-dark shadow-lg shadow-vantos-gold/20 hover:bg-amber-200 transition-colors"
+                className="inline-flex items-center justify-center rounded-xl bg-vantos-gold px-8 py-4 text-sm font-bold text-vantos-dark shadow-lg shadow-vantos-gold/20 hover:bg-amber-200 transition-colors"
               >
-                Simular Ahorro
+                Simular Hipoteca
               </Link>
               <Link
-                href="/como-funciona"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/5 hover:border-white/30 transition-colors"
+                href="/herramientas/inversion"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/30 transition-colors"
               >
-                Cómo funciona
+                Calculadora Inversión
+              </Link>
+              <Link
+                href="/herramientas/ahorro"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/30 transition-colors"
+              >
+                Planificar Ahorro
               </Link>
             </div>
+            <Link
+              href="/como-funciona"
+              className="block text-sm text-slate-500 hover:text-vantos-gold transition-colors"
+            >
+              ¿Cómo funciona el método Vantos?
+            </Link>
           </div>
 
-          {/* Columna derecha: tarjeta glassmorphism + dato */}
+          {/* Columna derecha: beneficios con iconos Check */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl p-8">
-              <p className="text-xs font-sans font-medium tracking-wider text-slate-400 uppercase mb-1">
-                Ahorro Proyectado
-              </p>
-              <p className="font-serif text-5xl font-semibold text-white tracking-tight mb-6">
-                47.200 €
-              </p>
-              <p className="text-sm text-slate-400 font-sans mb-6">
-                Ejemplo en 25 años con una amortización puntual
-              </p>
-              {/* Gráfico decorativo simple (barras CSS) */}
-              <div className="flex items-end gap-2 h-24" aria-hidden>
-                <div
-                  className="flex-1 rounded-t bg-white/20 min-h-[20%]"
-                  style={{ height: "30%" }}
-                />
-                <div
-                  className="flex-1 rounded-t bg-white/25 min-h-[20%]"
-                  style={{ height: "50%" }}
-                />
-                <div
-                  className="flex-1 rounded-t bg-white/30 min-h-[20%]"
-                  style={{ height: "75%" }}
-                />
-                <div
-                  className="flex-1 rounded-t bg-vantos-gold/60 min-h-[20%]"
-                  style={{ height: "100%" }}
-                />
-                <div
-                  className="flex-1 rounded-t bg-white/20 min-h-[20%]"
-                  style={{ height: "45%" }}
-                />
-              </div>
+              <ul className="space-y-6">
+                <li className="flex items-center gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-vantos-gold/20">
+                    <svg className="h-5 w-5 text-vantos-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="text-slate-200 font-medium">Amortización Inteligente</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-vantos-gold/20">
+                    <svg className="h-5 w-5 text-vantos-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="text-slate-200 font-medium">Interés Compuesto</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-vantos-gold/20">
+                    <svg className="h-5 w-5 text-vantos-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="text-slate-200 font-medium">Proyección a 30 años</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
