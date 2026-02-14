@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="relative min-h-0 flex items-center bg-vantos-dark overflow-hidden">
+    <section className="relative flex-1 flex flex-col justify-center bg-vantos-dark overflow-hidden">
       {/* Luces ambientales (blur extremo, baja opacidad) */}
       <div
         className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.12] bg-indigo-500 pointer-events-none"
@@ -17,7 +17,7 @@ export default function Home() {
         aria-hidden
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 w-full">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Columna izquierda: texto */}
           <div className="space-y-4">
