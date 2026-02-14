@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-vantos-dark overflow-hidden">
+    <section className="relative min-h-0 flex items-center bg-vantos-dark overflow-hidden">
       {/* Luces ambientales (blur extremo, baja opacidad) */}
       <div
         className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.12] bg-indigo-500 pointer-events-none"
@@ -17,21 +17,21 @@ export default function Home() {
         aria-hidden
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Columna izquierda: texto */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <p className="text-xs font-sans font-medium tracking-[0.25em] text-vantos-gold uppercase">
-              Estrategia Hipotecaria
+              Suite Financiera Integral
             </p>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.1]">
-              Domina tu Deuda, Diseña tu{" "}
+              Domina tu Patrimonio, Diseña tu{" "}
               <span className="bg-gradient-to-r from-vantos-gold via-amber-200 to-vantos-gold bg-clip-text text-transparent">
                 Libertad
               </span>
             </h1>
             <p className="text-slate-400 font-sans text-base lg:text-lg max-w-xl leading-relaxed">
-              Simula en segundos si te conviene amortizar o invertir. Sin fórmulas ocultas: números claros y una recomendación basada en tu caso.
+              Simula hipotecas, proyecta inversiones y planifica ahorros en segundos. Sin fórmulas ocultas: números claros y decisiones basadas en datos.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl mx-auto">
               <Link
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
             <Link
               href="/como-funciona"
-              className="block mt-12 text-lg text-white/60 hover:text-vantos-gold hover:underline underline-offset-8 transition-colors"
+              className="block mt-8 text-lg text-white/60 hover:text-vantos-gold hover:underline underline-offset-8 transition-colors"
             >
               ¿Cómo funciona el método Vantos?
             </Link>

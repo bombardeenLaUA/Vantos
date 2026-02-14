@@ -154,15 +154,14 @@ export default function MortgageCalculator() {
   return (
     <div className="w-full">
       <div className="grid grid-cols-12 gap-6 lg:gap-8 items-start">
-        
-        {/* COLUMNA 1: Configuración (lg:col-span-3) */}
-        <div className="col-span-12 lg:col-span-3 space-y-6">
+        {/* COLUMNA 1: Configuración (lg:col-span-3) - alineada al inicio con la columna de resultados */}
+        <div className="col-span-12 lg:col-span-3 space-y-6 lg:self-start">
           <div className="bg-white/5 rounded-3xl p-6 shadow-sm lg:sticky lg:top-8 border border-white/10">
             <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2 font-sans tracking-wide">
               <span className="bg-black/20 p-2 rounded-lg text-vantos-gold"><DollarSign className="w-5 h-5"/></span>
               Configuración
             </h2>
-            <p className="text-xs text-gray-400 mt-1 mb-4 font-sans">Ajusta tus parámetros actuales.</p>
+            <p className="text-xs text-gray-400 mb-4 font-sans">Ajusta tus parámetros actuales.</p>
 
             <div className="space-y-6">
               {/* Input: Deuda */}
