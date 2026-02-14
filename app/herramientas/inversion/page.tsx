@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import LuxuryAreaChart from "@/components/ui/LuxuryAreaChart";
 import ConsultationCTA from "@/components/ui/ConsultationCTA";
+import LegalNotice from "@/components/ui/LegalNotice";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 
@@ -178,6 +179,7 @@ export default function InversionToolPage() {
           </div>
         </div>
         <ConsultationCTA />
+        <LegalNotice />
       </div>
     </div>
   );
