@@ -33,29 +33,29 @@ export default function Home() {
             <p className="text-slate-400 font-sans text-base lg:text-lg max-w-xl leading-relaxed">
               Simula en segundos si te conviene amortizar o invertir. Sin fórmulas ocultas: números claros y una recomendación basada en tu caso.
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl mx-auto">
               <Link
                 href="/herramientas/hipoteca"
-                className="inline-flex items-center justify-center rounded-xl bg-vantos-gold px-8 py-4 text-sm font-bold text-vantos-dark shadow-lg shadow-vantos-gold/20 hover:bg-amber-200 transition-colors"
+                className="inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-6 py-4 text-sm font-medium text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
               >
                 Simular Hipoteca
               </Link>
               <Link
                 href="/herramientas/inversion"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/30 transition-colors"
+                className="inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-6 py-4 text-sm font-medium text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
               >
                 Calculadora Inversión
               </Link>
               <Link
                 href="/herramientas/ahorro"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/30 transition-colors"
+                className="inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-6 py-4 text-sm font-medium text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
               >
                 Planificar Ahorro
               </Link>
             </div>
             <Link
               href="/como-funciona"
-              className="block text-sm text-slate-500 hover:text-vantos-gold transition-colors"
+              className="block mt-12 text-lg text-white/60 hover:text-vantos-gold hover:underline underline-offset-8 transition-colors"
             >
               ¿Cómo funciona el método Vantos?
             </Link>

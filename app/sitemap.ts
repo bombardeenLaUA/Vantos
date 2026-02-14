@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/herramientas/hipoteca`, lastModified, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/herramientas/inversion`, lastModified, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/herramientas/ahorro`, lastModified, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/estrategia`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/como-funciona`, lastModified, changeFrequency: "weekly", priority: 0.7 },
   ];
 }

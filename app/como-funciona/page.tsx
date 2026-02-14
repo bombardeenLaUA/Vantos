@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const faqs = [
   {
     question: "¿Cómo se calculan los intereses?",
@@ -16,28 +14,60 @@ const faqs = [
     answer:
       "No. Todo ocurre en tu navegador. No enviamos ni almacenamos tus números en ningún servidor. Privacidad total.",
   },
+  {
+    question: "¿Qué pasa con la inflación?",
+    answer:
+      "La inflación devalúa tu deuda, pero también tus ahorros. Nuestros modelos te ayudan a visualizar el crecimiento bruto.",
+  },
+  {
+    question: "¿Tengo que pagar impuestos por invertir?",
+    answer:
+      "Sí, la rentabilidad financiera tributa en la base del ahorro. Tenlo en cuenta al comparar con la amortización, que es un ahorro neto.",
+  },
+];
+
+const pilares = [
+  {
+    titulo: "Coste de Oportunidad",
+    texto: "¿Pagar deuda al 3% o ganar un 7% invirtiendo? Te enseñamos a calcular la diferencia real en euros.",
+  },
+  {
+    titulo: "Interés Compuesto",
+    texto: "La octava maravilla del mundo. Visualiza cómo el tiempo multiplica tus ahorros exponencialmente.",
+  },
+  {
+    titulo: "Amortización Inteligente",
+    texto: "No todas las amortizaciones son iguales. Descubre cuándo reducir plazo y cuándo reducir cuota.",
+  },
 ];
 
 export default function ComoFuncionaPage() {
   return (
     <div className="min-h-screen bg-vantos-dark pt-24 pb-16 px-4 sm:px-6">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="font-serif text-4xl lg:text-5xl text-white mb-12 text-center">
-          Guía de Estrategia Financiera
+      <div className="max-w-4xl mx-auto">
+        <h1 className="font-serif text-4xl lg:text-5xl text-white mb-6 text-center">
+          Domina la Matemática de tu Patrimonio
         </h1>
+        <p className="text-slate-400 text-lg text-center leading-relaxed mb-16 max-w-2xl mx-auto">
+          La banca tradicional juega con la opacidad. Vantos juega con la claridad. Entiende las reglas del juego antes de mover tu dinero.
+        </p>
 
-        {/* Sección 1: El Método */}
-        <section className="mb-12">
-          <h2 className="font-serif text-2xl text-vantos-gold mb-4">El Método Vantos</h2>
-          <p className="text-slate-300 leading-relaxed">
-            Vantos compara el coste de oportunidad entre dos caminos: amortizar tu hipoteca o invertir ese capital. 
-            Si tu hipoteca tiene un interés más alto que la rentabilidad que podrías obtener invirtiendo, suele compensar amortizar. 
-            Si la rentabilidad de mercado supera tu tipo de interés hipotecario, puede ser más rentable invertir. 
-            Nuestras herramientas te dan los números claros para que decidas con criterio.
-          </p>
+        {/* Sección 1: Los 3 Pilares */}
+        <section className="mb-16">
+          <div className="grid sm:grid-cols-3 gap-6">
+            {pilares.map((pilar, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              >
+                <h3 className="font-serif text-xl text-vantos-gold mb-3">{pilar.titulo}</h3>
+                <p className="text-slate-300 leading-relaxed">{pilar.texto}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* Sección 2: FAQ (acordeón con details/summary) */}
+        {/* Sección 2: FAQ */}
         <section>
           <h2 className="font-serif text-2xl text-vantos-gold mb-6">Preguntas Frecuentes</h2>
           <div className="space-y-2">
@@ -64,15 +94,6 @@ export default function ComoFuncionaPage() {
             ))}
           </div>
         </section>
-
-        <div className="mt-12 text-center">
-          <Link
-            href="/herramientas/hipoteca"
-            className="inline-block border border-white/20 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/5 transition-colors"
-          >
-            Ir a Herramientas
-          </Link>
-        </div>
       </div>
     </div>
   );
