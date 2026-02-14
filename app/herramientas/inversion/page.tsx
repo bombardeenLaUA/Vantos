@@ -56,7 +56,7 @@ export default function InversionToolPage() {
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Configuración - Card encapsulada como en Hipoteca */}
             <div className="lg:col-span-4">
-              <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-6 lg:p-8 space-y-6">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
                 <h2 className="text-lg font-bold text-slate-100 font-sans tracking-wide">Configuración</h2>
                 <p className="text-xs text-gray-400 -mt-2 font-sans">Ajusta tus parámetros.</p>
                 <div className="space-y-6">
