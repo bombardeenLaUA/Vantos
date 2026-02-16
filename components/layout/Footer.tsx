@@ -18,7 +18,10 @@ export default function Footer() {
           <p className="text-[11px]">Tu patrimonio, optimizado.</p>
         </div>
         <div className="flex flex-col items-start md:items-end gap-1">
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap">
+            <Link href="/mision" className="hover:text-vantos-gold transition-colors">
+              Misión
+            </Link>
             <Link href="/aviso-legal" className="hover:text-vantos-gold transition-colors">
               Aviso Legal
             </Link>
