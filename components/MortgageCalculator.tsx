@@ -14,7 +14,6 @@ import {
   ChevronDown,
 } from "lucide-react";
 import LuxuryAreaChart from "@/components/ui/LuxuryAreaChart";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import {
@@ -391,21 +390,14 @@ export default function MortgageCalculator() {
                   <p className="text-sm text-gray-400 mt-1">
                     Rentabilidad {form.watch("investmentRate")}% a largo del plazo de la hipoteca.
                   </p>
-                  {strategic?.winner === "invest" && form.watch("lumpSumPayment") > 0 && (
-                    <a
-                      href="https://example.com/afiliado"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block w-full sm:w-auto"
-                    >
-                      <Button
-                        className="w-full sm:w-auto bg-vantos-gold hover:bg-vantos-gold/90 text-vantos-dark font-semibold rounded-xl shadow-md hover:shadow-lg transition-all"
-                        size="sm"
-                      >
-                        Ver Cuenta Remunerada al {form.watch("investmentRate")}%
-                      </Button>
-                    </a>
-                  )}
+                  <a
+                    href="https://traderepublic.com/es-es"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full mt-4 py-3 px-4 rounded-xl border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-all font-medium text-sm inline-flex items-center justify-center"
+                  >
+                    📈 Ver cuenta al 3.75% (Sin Riesgo)
+                  </a>
                 </>
               ) : (
                 <p className="text-gray-400">Introduce datos y cantidad extra para comparar.</p>

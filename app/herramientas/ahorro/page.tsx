@@ -146,6 +146,17 @@ export default function AhorroToolPage() {
                 </span>{" "}
                 de tu objetivo.
               </p>
+              <p className="text-sm text-red-300/80 text-center">
+                La inflación se come tus ahorros si están parados.
+              </p>
+              <a
+                href="https://traderepublic.com/es-es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-4 rounded-xl border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-all font-medium text-sm inline-flex items-center justify-center"
+              >
+                🛡️ Proteger mis ahorros al 3.75%
+              </a>
             </div>
 
             {/* Resultado: Tiempo restante - Card */}

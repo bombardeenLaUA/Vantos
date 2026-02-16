@@ -176,6 +176,15 @@ export default function InversionToolPage() {
                 </div>
               </div>
 
+              <a
+                href="https://traderepublic.com/es-es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-4 rounded-xl border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-all font-medium text-sm inline-flex items-center justify-center"
+              >
+                🚀 Empieza a generar este interés compuesto hoy
+              </a>
+
               {/* Gráfico */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
                 <h3 className="font-bold text-slate-100 mb-4">Evolución del Capital</h3>
