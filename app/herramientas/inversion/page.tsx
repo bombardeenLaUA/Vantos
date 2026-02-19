@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import LuxuryAreaChart from "@/components/ui/LuxuryAreaChart";
+import dynamic from "next/dynamic";
+
+const LuxuryAreaChart = dynamic(() => import("@/components/ui/LuxuryAreaChart"), { ssr: false });
 import ConsultationCTA from "@/components/ui/ConsultationCTA";
 import LegalNotice from "@/components/ui/LegalNotice";
 import { Input } from "@/components/ui/input";

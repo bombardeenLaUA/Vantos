@@ -13,7 +13,9 @@ import {
   ArrowUpCircle,
   ChevronDown,
 } from "lucide-react";
-import LuxuryAreaChart from "@/components/ui/LuxuryAreaChart";
+import dynamic from "next/dynamic";
+
+const LuxuryAreaChart = dynamic(() => import("@/components/ui/LuxuryAreaChart"), { ssr: false });
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import {
@@ -396,7 +398,7 @@ export default function MortgageCalculator() {
                     rel="noopener noreferrer"
                     className="w-full mt-4 py-3 px-4 rounded-xl border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-all font-medium text-sm inline-flex items-center justify-center"
                   >
-                    📈 Ver cuenta al 3.75% (Sin Riesgo)
+                    Ver cuenta al 3.75% (Sin Riesgo)
                   </a>
                 </>
               ) : (
