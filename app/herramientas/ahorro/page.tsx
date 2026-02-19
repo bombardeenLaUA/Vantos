@@ -155,7 +155,7 @@ export default function AhorroToolPage() {
                 rel="noopener noreferrer"
                 className="w-full py-3 px-4 rounded-xl border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-all font-medium text-sm inline-flex items-center justify-center"
               >
-                🛡️ Proteger mis ahorros al 3.75%
+                Proteger mis ahorros al 3.75%
               </a>
             </div>
 
