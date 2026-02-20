@@ -355,11 +355,11 @@ export default function MortgageCalculator() {
                   <p className="text-xs text-gray-500 mt-1">
                     {strategic.amortize.newTermMonths != null && strategic.amortize.newTermMonths < form.watch("years") * 12 ? (
                       <>
-                        ({formatMoney(strategic.amortize.interestSaved)}€ intereses ahorrados + rendimiento de cuotas liberadas)
+                        ({formatMoney(strategic.amortize.interestSaved)} intereses ahorrados + rendimiento de cuotas liberadas)
                       </>
                     ) : (
                       <>
-                        ({formatMoney(strategic.amortize.interestSaved)}€ intereses ahorrados)
+                        ({formatMoney(strategic.amortize.interestSaved)} intereses ahorrados)
                       </>
                     )}
                   </p>
