@@ -282,8 +282,46 @@ export function calculateSavingsScenario(input: SavingsScenarioInput): ScenarioC
 }
 
 /**
+ * Calcula el interés compuesto generado por invertir una cuota mensual durante N meses.
+ * Simula aportaciones mensuales con capitalización mensual.
+ */
+function calculateCompoundInterestFromMonthlyPayments(
+  monthlyPayment: number,
+  months: number,
+  annualReturnPercent: number
+): number {
+  if (monthlyPayment <= 0 || months <= 0) return 0;
+  
+  const monthlyRate = new Decimal(annualReturnPercent).div(100).div(12);
+  const PMT = new Decimal(monthlyPayment);
+  let totalValue = new Decimal(0);
+
+  // Valor futuro de una anualidad: FV = PMT * [((1+r)^n - 1) / r]
+  // Para cada mes, la cuota se capitaliza durante los meses restantes
+  for (let month = 1; month <= months; month++) {
+    const monthsRemaining = months - month + 1;
+    const futureValue = PMT.mul(
+      new Decimal(1).add(monthlyRate).pow(monthsRemaining)
+    );
+    totalValue = totalValue.add(futureValue);
+  }
+
+  const totalInvested = PMT.mul(months);
+  const interestEarned = totalValue.minus(totalInvested);
+  return interestEarned.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+}
+
+/**
  * Comparación estratégica: escenario base, amortizar con lump sum o invertir ese capital.
  * Devuelve totales y la diferencia neta para destacar la opción ganadora.
+ * 
+ * REGLA DEL GANADOR: Basada únicamente en comparación de porcentajes.
+ * - Si investmentRate > annualRate -> Gana INVERTIR
+ * - Si annualRate >= investmentRate -> Gana AMORTIZAR
+ * 
+ * DIFERENCIA NETA: Compara beneficios al final del plazo original de la hipoteca.
+ * - Beneficio Invertir: Intereses generados durante todo el plazo original
+ * - Beneficio Amortizar: Intereses ahorrados + Intereses compuestos de cuotas liberadas
  */
 export function getStrategicComparison(input: StrategicComparisonInput): StrategicComparisonResult {
   const {
@@ -297,6 +335,9 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
 
   const base = getAmortizationTable(debt, annualRate, termMonths);
 
+  // REGLA 1: Determinar ganador basado SOLO en porcentajes
+  const winner: "amortize" | "invest" = investmentRate > annualRate ? "invest" : "amortize";
+
   if (lumpSumPayment <= 0) {
     const investZero = scenarioCInvest(0, investmentRate, termMonths);
     return {
@@ -309,31 +350,55 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
       },
       invest: { totalReturn: investZero.totalReturn },
       netDifference: 0,
-      winner: "amortize",
+      winner,
     };
   }
 
   const scenarioA = scenarioAReducePayment(debt, annualRate, termMonths, lumpSumPayment);
   const scenarioB = scenarioBReduceTerm(debt, annualRate, termMonths, lumpSumPayment);
+  
+  // Beneficio de Invertir: Intereses generados durante TODO el plazo original
   const invest = scenarioCInvest(lumpSumPayment, investmentRate, termMonths);
+  const benefitInvest = invest.totalReturn;
 
-  const amortizeResult =
-    amortizationType === "reduce_payment"
-      ? {
-          totalInterestPaid: scenarioA.totalInterestPaid,
-          interestSaved: new Decimal(base.totalInterest).minus(scenarioA.totalInterestPaid).toNumber(),
-          newMonthlyPayment: scenarioA.newMonthlyPayment,
-          newTermMonths: termMonths,
-        }
-      : {
-          totalInterestPaid: scenarioB.totalInterestPaid,
-          interestSaved: scenarioB.savedInterest,
-          newMonthlyPayment: base.monthlyPayment,
-          newTermMonths: scenarioB.newTermMonths,
-        };
+  // Beneficio de Amortizar: Depende del tipo
+  let benefitAmortize: number;
+  let amortizeResult;
 
-  const netDifference = new Decimal(invest.totalReturn)
-    .minus(amortizeResult.interestSaved)
+  if (amortizationType === "reduce_payment") {
+    // Reducir cuota: No hay meses ahorrados, solo intereses ahorrados
+    const interestSaved = new Decimal(base.totalInterest).minus(scenarioA.totalInterestPaid).toNumber();
+    benefitAmortize = interestSaved;
+    amortizeResult = {
+      totalInterestPaid: scenarioA.totalInterestPaid,
+      interestSaved,
+      newMonthlyPayment: scenarioA.newMonthlyPayment,
+      newTermMonths: termMonths,
+    };
+  } else {
+    // Reducir plazo: Intereses ahorrados + Intereses compuestos de cuotas liberadas
+    const interestSaved = scenarioB.savedInterest;
+    const monthsSaved = termMonths - scenarioB.newTermMonths;
+    
+    // Calcular intereses compuestos de las cuotas liberadas durante los meses ahorrados
+    const compoundFromPayments = calculateCompoundInterestFromMonthlyPayments(
+      base.monthlyPayment,
+      monthsSaved,
+      investmentRate
+    );
+    
+    benefitAmortize = interestSaved + compoundFromPayments;
+    amortizeResult = {
+      totalInterestPaid: scenarioB.totalInterestPaid,
+      interestSaved,
+      newMonthlyPayment: base.monthlyPayment,
+      newTermMonths: scenarioB.newTermMonths,
+    };
+  }
+
+  // Diferencia neta: Beneficio Invertir - Beneficio Amortizar
+  const netDifference = new Decimal(benefitInvest)
+    .minus(benefitAmortize)
     .toDecimalPlaces(2, Decimal.ROUND_HALF_UP)
     .toNumber();
 
@@ -342,7 +407,7 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
     amortize: amortizeResult,
     invest: { totalReturn: invest.totalReturn },
     netDifference,
-    winner: netDifference > 0 ? "invest" : "amortize",
+    winner,
   };
 }
 
@@ -399,7 +464,7 @@ export function getMortgageChartData(
     }
   }
 
-  const maxStrategyYear = strategyByYear.size > 0 ? Math.max(...strategyByYear.keys()) : 0;
+  const maxStrategyYear = strategyByYear.size > 0 ? Math.max(...Array.from(strategyByYear.keys())) : 0;
   return scheduleBase.map((row) => ({
     ...row,
     saldoEstrategia: row.year <= maxStrategyYear ? (strategyByYear.get(row.year) ?? 0) : 0,

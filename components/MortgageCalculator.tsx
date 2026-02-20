@@ -412,11 +412,14 @@ export default function MortgageCalculator() {
               <span className="text-sm font-medium text-gray-300">Diferencia neta (Invertir vs Amortizar)</span>
               <span
                 className={`text-xl font-bold ${
-                  strategic.netDifference >= 0 ? "text-emerald-600" : "text-rose-600"
+                  strategic.winner === "invest" ? "text-emerald-600" : "text-indigo-400"
                 }`}
               >
-                {strategic.netDifference >= 0 ? "+" : ""}
-                {formatMoney(strategic.netDifference)}
+                {strategic.winner === "invest" ? "+" : "+"}
+                {formatMoney(Math.abs(strategic.netDifference))}
+                <span className="text-sm font-normal ml-2 text-gray-400">
+                  {strategic.winner === "invest" ? "a favor de invertir" : "a favor de amortizar"}
+                </span>
               </span>
             </div>
           )}
