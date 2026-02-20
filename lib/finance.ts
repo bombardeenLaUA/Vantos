@@ -59,6 +59,7 @@ export interface StrategicComparisonResult {
   amortize: {
     totalInterestPaid: number;
     interestSaved: number;
+    totalBenefit: number; // Beneficio total: intereses ahorrados + reinversión de cuotas liberadas
     newMonthlyPayment?: number;
     newTermMonths?: number;
   };
@@ -345,6 +346,7 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
       amortize: {
         totalInterestPaid: base.totalInterest,
         interestSaved: 0,
+        totalBenefit: 0,
         newMonthlyPayment: base.monthlyPayment,
         newTermMonths: termMonths,
       },
@@ -372,6 +374,7 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
     amortizeResult = {
       totalInterestPaid: scenarioA.totalInterestPaid,
       interestSaved,
+      totalBenefit: benefitAmortize,
       newMonthlyPayment: scenarioA.newMonthlyPayment,
       newTermMonths: termMonths,
     };
@@ -391,6 +394,7 @@ export function getStrategicComparison(input: StrategicComparisonInput): Strateg
     amortizeResult = {
       totalInterestPaid: scenarioB.totalInterestPaid,
       interestSaved,
+      totalBenefit: benefitAmortize,
       newMonthlyPayment: base.monthlyPayment,
       newTermMonths: scenarioB.newTermMonths,
     };

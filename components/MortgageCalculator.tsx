@@ -305,19 +305,19 @@ export default function MortgageCalculator() {
             </div>
           </div>
 
-          {/* Tarjeta Oportunidad VIP (lógica: hipoteca vs rentabilidad segura) */}
-          {form.watch("rate") < SAFE_RATE ? (
+          {/* Tarjeta Oportunidad VIP (lógica: hipoteca vs rentabilidad de inversión) */}
+          {form.watch("investmentRate") > form.watch("rate") ? (
             <div className="bg-amber-500/10 rounded-3xl p-6 border border-amber-500/30 shadow-sm">
               <h4 className="font-bold text-amber-400 text-sm">Oportunidad VIP</h4>
               <p className="text-xs text-amber-200/90 mt-1 leading-relaxed">
-                Tu hipoteca es barata (<strong>{form.watch("rate")}%</strong>). Ganas dinero manteniendo tu liquidez en una cuenta al <strong>{SAFE_RATE}%</strong> en vez de amortizar.
+                Tu hipoteca es barata (<strong>{form.watch("rate")}%</strong>). Ganas dinero invirtiendo al <strong>{form.watch("investmentRate")}%</strong> en vez de amortizar.
               </p>
             </div>
           ) : (
             <div className="bg-indigo-500/10 rounded-3xl p-6 border border-indigo-500/30 shadow-sm">
               <h4 className="font-bold text-indigo-400 text-sm">Prioridad: Amortizar</h4>
               <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Tu interés (<strong>{form.watch("rate")}%</strong>) es superior a la rentabilidad segura del mercado. Lo más rentable hoy es reducir deuda.
+                Tu interés (<strong>{form.watch("rate")}%</strong>) es superior a la rentabilidad segura (<strong>{form.watch("investmentRate")}%</strong>). Lo más rentable es reducir deuda.
               </p>
             </div>
           )}
@@ -350,9 +350,20 @@ export default function MortgageCalculator() {
               {strategic ? (
                 <>
                   <p className="text-2xl font-bold text-slate-100">
-                    Ahorras {formatMoney(strategic.amortize.interestSaved)} en intereses
+                    Beneficio Total: {formatMoney(strategic.amortize.totalBenefit)}
                   </p>
-                  <p className="text-sm text-gray-400 mt-1">
+                  <p className="text-xs text-gray-500 mt-1">
+                    {strategic.amortize.newTermMonths != null && strategic.amortize.newTermMonths < form.watch("years") * 12 ? (
+                      <>
+                        ({formatMoney(strategic.amortize.interestSaved)}€ intereses ahorrados + rendimiento de cuotas liberadas)
+                      </>
+                    ) : (
+                      <>
+                        ({formatMoney(strategic.amortize.interestSaved)}€ intereses ahorrados)
+                      </>
+                    )}
+                  </p>
+                  <p className="text-sm text-gray-400 mt-2">
                     {strategic.amortize.newMonthlyPayment != null &&
                       `Nueva cuota: ${strategic.amortize.newMonthlyPayment.toFixed(2)} €/mes`}
                     {strategic.amortize.newTermMonths != null &&
