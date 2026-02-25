@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/herramientas/hipoteca", label: "Hipoteca" },
   { href: "/herramientas/inversion", label: "Inversión" },
   { href: "/herramientas/ahorro", label: "Ahorro" },
-  { href: "/guia/amortizar-o-invertir", label: "Guía" },
+  { href: "/guia", label: "Guía" },
 ];
 
 export default function Header() {

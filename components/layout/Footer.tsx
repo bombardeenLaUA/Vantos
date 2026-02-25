@@ -19,8 +19,11 @@ export default function Footer() {
         </div>
         <div className="flex flex-col items-start md:items-end gap-1">
           <div className="flex gap-4 flex-wrap">
-            <Link href="/guia/amortizar-o-invertir" className="hover:text-vantos-gold transition-colors">
+            <Link href="/guia" className="hover:text-vantos-gold transition-colors">
               Guía
+            </Link>
+            <Link href="/guia/amortizar-o-invertir" className="hover:text-vantos-gold transition-colors">
+              Guía Hipoteca
             </Link>
             <Link href="/mision" className="hover:text-vantos-gold transition-colors">
               Misión
