@@ -23,7 +23,10 @@ export default function Header() {
       <header className="sticky top-0 z-50 bg-vantos-dark/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/">
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-vantos-gold focus-visible:ring-offset-2 focus-visible:ring-offset-vantos-dark rounded-xl"
+            >
               <Image
                 src="/images/vantos.png"
                 alt="Vantos"
