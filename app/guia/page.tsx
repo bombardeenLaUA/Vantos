@@ -45,7 +45,7 @@ const pilares = [
 
 export default function GuiaPage() {
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-16 px-4 sm:px-6">
+    <div className="bg-vantos-dark pt-24 pb-24 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         <h1 className="font-serif text-4xl lg:text-5xl text-white mb-6 text-center">
           Domina la Matemática de tu Patrimonio

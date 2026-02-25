@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AvisoLegalPage() {
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-16 px-4 sm:px-6">
+    <div className="bg-vantos-dark pt-24 pb-24 px-4 sm:px-6">
       <div className="max-w-2xl mx-auto">
         <h1 className="font-serif text-4xl text-white mb-10">Aviso Legal</h1>
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AmortizarOInvertirPage() {
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-16 px-4 sm:px-6">
+    <div className="bg-vantos-dark pt-24 pb-24 px-4 sm:px-6">
       <article className="max-w-4xl mx-auto">
         <header className="mb-12">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6 leading-tight">

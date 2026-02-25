@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function MisionPage() {
   return (
-    <div className="min-h-screen bg-vantos-dark pt-24 pb-16 px-4 sm:px-6">
+    <div className="bg-vantos-dark pt-24 pb-24 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <section className="mb-16 text-center">
