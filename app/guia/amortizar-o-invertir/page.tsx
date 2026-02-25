@@ -99,7 +99,7 @@ export default function AmortizarOInvertirPage() {
           <div className="pt-4">
             <Link
               href="/herramientas/hipoteca"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-vantos-gold text-vantos-dark font-semibold hover:bg-vantos-gold/90 transition-all shadow-lg hover:shadow-xl text-lg"
+              className="inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-6 py-4 text-sm font-medium text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
             >
               Abrir el Simulador de Estrategia Hipotecaria
             </Link>

@@ -48,7 +48,7 @@ export default function PrivacidadPage() {
 
         <Link
           href="/"
-          className="mt-12 inline-block border border-white/20 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/5 transition-colors"
+          className="mt-12 inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-6 py-4 text-sm font-medium text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
         >
           Volver al Inicio
         </Link>
