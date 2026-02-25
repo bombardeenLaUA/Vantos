@@ -8,7 +8,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  TooltipProps,
 } from "recharts";
 
 export interface ChartDataPoint {
@@ -27,6 +26,15 @@ interface LuxuryAreaChartProps {
   height?: number;
 }
 
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: { payload?: ChartDataPoint }[];
+  label?: string | number;
+  primaryKey: string;
+  secondaryKey?: string;
+  formatValue?: (v: number) => string;
+}
+
 function CustomTooltip({
   active,
   payload,
@@ -34,11 +42,7 @@ function CustomTooltip({
   primaryKey,
   secondaryKey,
   formatValue = (v) => v.toLocaleString("es-ES") + "€",
-}: TooltipProps<number, string> & {
-  primaryKey: string;
-  secondaryKey?: string;
-  formatValue?: (v: number) => string;
-}) {
+}: CustomTooltipProps) {
   if (!active || !payload?.length || !label) return null;
 
   const p = payload[0]?.payload;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,8 +36,6 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const SAFE_RATE = 3.0; // Rentabilidad segura del mercado (ej. cuentas remuneradas)
-
 export default function MortgageCalculator() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -64,7 +62,7 @@ export default function MortgageCalculator() {
     },
   });
 
-  const calculate = (values: FormValues) => {
+  const calculate = useCallback((values: FormValues) => {
     try {
       const principal = values.principal;
       const rate = values.rate;
@@ -135,7 +133,7 @@ export default function MortgageCalculator() {
     } catch (error) {
       console.error("Error de cálculo", error);
     }
-  };
+  }, [router]);
 
   useEffect(() => {
     const subscription = form.watch((value) => {
@@ -144,11 +142,11 @@ export default function MortgageCalculator() {
       }
     });
     return () => subscription.unsubscribe();
-  }, [form.watch]);
+  }, [form, calculate]);
 
   useEffect(() => {
     calculate(form.getValues());
-  }, []);
+  }, [calculate, form]);
 
   const formatMoney = (val: number) => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(val);
 
