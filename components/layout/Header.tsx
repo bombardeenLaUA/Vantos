@@ -25,7 +25,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="inline-flex items-center justify-center transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-vantos-gold focus-visible:ring-offset-2 focus-visible:ring-offset-vantos-dark rounded-xl"
+              className="group inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-3 py-2 text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
             >
               <Image
                 src="/images/vantos.png"
@@ -33,7 +33,7 @@ export default function Header() {
                 width={120}
                 height={32}
                 priority
-                className="h-8 w-auto object-contain brightness-0 invert transition-all duration-300 hover:[filter:invert(76%)_sepia(35%)_saturate(637%)_hue-rotate(358deg)_brightness(88%)_contrast(88%)]"
+                className="h-8 w-auto object-contain brightness-0 invert transition-all duration-300 group-hover:invert-0 group-hover:brightness-0"
               />
             </Link>
           </div>
