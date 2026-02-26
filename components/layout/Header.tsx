@@ -23,17 +23,13 @@ export default function Header() {
       <header className="sticky top-0 z-50 bg-vantos-dark/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              className="group inline-flex items-center justify-center rounded-xl bg-white/5 border border-white/20 px-3 py-2 text-white hover:bg-vantos-gold hover:text-vantos-dark hover:border-vantos-gold transition-all duration-300"
-            >
+            <Link href="/">
               <Image
                 src="/images/vantos.png"
                 alt="Vantos"
                 width={120}
                 height={32}
-                priority
-                className="h-8 w-auto object-contain brightness-0 invert transition-all duration-300 group-hover:invert-0 group-hover:brightness-0"
+                className="h-8 w-auto object-contain brightness-0 invert"
               />
             </Link>
           </div>
